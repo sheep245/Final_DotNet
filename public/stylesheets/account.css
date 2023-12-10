@@ -1,0 +1,60 @@
+*{
+    padding:0;
+    margin:0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: rgb(231, 231, 231);
+  }
+
+#footer{
+    margin-top: auto;
+}
+
+form {
+    background-color: rgb(37, 37, 37);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 20%;
+    margin: 6% auto;
+    border: 2px solid rgb(140, 140, 140);
+    padding: 3% 4%;
+    border-radius: 20px 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+form h1{
+    text-align: center;
+    color: rgb(140, 206, 185);
+}
+.button-group {
+    display: flex;
+    justify-content: center;
+    padding-top: 3%;
+}
+
+.button-group input[type="button"] {
+    width: 45%; 
+    border-radius: 10px;
+}
+
+form input[type="text"], form input[type="email"], form input[type="password"], form input[type="date"], form select {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #999999;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+}
