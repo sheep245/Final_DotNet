@@ -7,9 +7,7 @@ namespace Point_Of_Sales.Entities
         public int Id { get; set; }
         public string InventoryID { get; set; }
 
-        [ForeignKey("Product")]
-        public int ProductId { get; set; }
-        public required Product Product { get; set; }
+        public ICollection<Product>? Products { get; set; }
 
         public int Number { get; set; }
 

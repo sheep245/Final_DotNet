@@ -1,4 +1,6 @@
-﻿namespace Point_Of_Sales.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Point_Of_Sales.Entities
 {
     public class Product
     {
@@ -9,7 +11,10 @@
         public double Retail_Price { get; set;}
         public string Category { get; set; }
         public DateTime Creation_Date { get; set; }
-        public Inventory Inventory { get; set; }
+
+        [ForeignKey("Inventory")]
+        public int InventoryId { get; set; }
+        public required Inventory Inventory { get; set; }
 
         public ICollection<PurchaseDetail> PurchaseDetails { get; set; }
     }

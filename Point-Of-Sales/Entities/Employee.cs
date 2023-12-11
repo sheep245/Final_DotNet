@@ -20,6 +20,6 @@ namespace Point_Of_Sales.Entities
 
         public bool Status { get; set; }
 
-        public ICollection<PurchaseHistory> purchaseHistories { get; set; }
+        public ICollection<PurchaseHistory> PurchaseHistories { get; set; }
     }
 }
