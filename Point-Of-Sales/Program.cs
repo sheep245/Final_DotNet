@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Point_Of_Sales.Config;
+
 namespace Point_Of_Sales
 {
     public class Program
@@ -8,6 +11,12 @@ namespace Point_Of_Sales
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("MyDBString"));
+            });
+
 
             var app = builder.Build();
 

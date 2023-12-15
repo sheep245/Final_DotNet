@@ -6,6 +6,6 @@
         public required string Phone { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public ICollection<PurchaseHistory> purchaseHistories { get; set; }
+        public virtual ICollection<Purchase>? Purchases { get; set; }
     }
 }

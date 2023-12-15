@@ -8,7 +8,7 @@ namespace Point_Of_Sales.Entities
 
         [ForeignKey("Account")]
         public int AccountId { get; set; }
-        public required Account Account { get; set; }
+        public virtual required Account Account { get; set; }
 
         public required string Fullname { get; set; }
         public required string Email { get; set; }
@@ -16,10 +16,10 @@ namespace Point_Of_Sales.Entities
 
         [ForeignKey("RetailStore")]
         public int RetailStoreId { get; set; }  
-        public required RetailStore RetailStore { get; set; }
+        public virtual required RetailStore RetailStore { get; set; }
 
         public bool Status { get; set; }
 
-        public ICollection<PurchaseHistory> PurchaseHistories { get; set; }
+        public virtual ICollection<Purchase> PurchaseHistories { get; set; }
     }
 }

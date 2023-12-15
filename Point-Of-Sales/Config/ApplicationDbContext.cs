@@ -10,7 +10,7 @@ namespace Point_Of_Sales.Config
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<PurchaseHistory> PurchaseHistories { get; set; }
+        public DbSet<Purchase> PurchaseHistories { get; set; }
         public DbSet<PurchaseDetail> PurchaseDetails { get; set; }
         public DbSet<RetailStore> RetailStores { get; set; }
 
@@ -25,6 +25,11 @@ namespace Point_Of_Sales.Config
                 .HasIndex(p => new {p.Product_Name, p.Barcode})
                 .IsUnique();
 
+            builder.Entity<Account>()
+                .HasOne(a => a.Employee)
+                .WithOne(e => e.Account)
+                .HasForeignKey<Account>(e => e.EmployeeId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

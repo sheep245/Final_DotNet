@@ -16,32 +16,48 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Downloads\DOTNET - Final Project (23-12-2023)\Source\Point-Of-Sales
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Account/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDcmVhdGUuY3NodG1s
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Accounts/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Account/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Accounts/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Account/Profile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Accounts/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Accounts/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Accounts/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Authen/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVuXExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Customer/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3JlYXRlLmNzaHRtbA==
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Employees/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Customer/Detail.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcRGV0YWlsLmNzaHRtbA==
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Employees/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Customer/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcSW5kZXguY3NodG1s
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Employees/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Employees/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Employees/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Home/Index.cshtml]
@@ -52,24 +68,84 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Product/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxDcmVhdGUuY3NodG1s
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Products/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Product/Detail.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZXRhaWwuY3NodG1s
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Products/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Product/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Products/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Purchase/Detail.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VcRGV0YWlsLmNzaHRtbA==
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Products/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Purchase/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VcSW5kZXguY3NodG1s
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Products/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/PurchaseDetails/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VEZXRhaWxzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/PurchaseDetails/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VEZXRhaWxzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/PurchaseDetails/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VEZXRhaWxzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/PurchaseDetails/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VEZXRhaWxzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/PurchaseDetails/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VEZXRhaWxzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Purchases/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Purchases/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Purchases/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Purchases/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Purchases/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hhc2VzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/RetailStores/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV0YWlsU3RvcmVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/RetailStores/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV0YWlsU3RvcmVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/RetailStores/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV0YWlsU3RvcmVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/RetailStores/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV0YWlsU3RvcmVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/RetailStores/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV0YWlsU3RvcmVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Shared/Error.cshtml]
