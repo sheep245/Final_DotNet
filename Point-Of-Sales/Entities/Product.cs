@@ -11,9 +11,9 @@ namespace Point_Of_Sales.Entities
         public double Retail_Price { get; set;}
         public string Category { get; set; }
         public DateTime Creation_Date { get; set; }
-        public virtual ICollection<Inventory>? Inventories { get; set; }
 
         public bool Is_Deleted { get; set; } = true;
+        public virtual ICollection<Inventory>? Inventories { get; set; }
 
         //public ICollection<PurchaseDetail> PurchaseDetails { get; set; }
     }

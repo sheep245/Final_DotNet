@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Point_Of_Sales.Config;
 using Point_Of_Sales.Entities;
+using Point_Of_Sales.Models;
 
 namespace Point_Of_Sales.Controllers
 {
@@ -22,22 +23,19 @@ namespace Point_Of_Sales.Controllers
         // GET: Purchases
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.PurchaseHistories.Include(p => p.Customer).Include(p => p.Employee);
-            return View(await applicationDbContext.ToListAsync());
+            var purchases = await _context.PurchaseHistories.ToListAsync();
+            return View(purchases);
         }
 
         // GET: Purchases/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string? id)
         {
             if (id == null || _context.PurchaseHistories == null)
             {
                 return NotFound();
             }
 
-            var purchase = await _context.PurchaseHistories
-                .Include(p => p.Customer)
-                .Include(p => p.Employee)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var purchase = await _context.PurchaseHistories.FirstOrDefaultAsync(m => m.purchaseId.Equals(id));
             if (purchase == null)
             {
                 return NotFound();
@@ -46,7 +44,6 @@ namespace Point_Of_Sales.Controllers
             return View(purchase);
         }
 
-        // GET: Purchases/Create
         public IActionResult Create()
         {
             ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id");
@@ -54,81 +51,92 @@ namespace Point_Of_Sales.Controllers
             return View();
         }
 
-        // POST: Purchases/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("purchaseId,CustomerId,EmployeeId,Total_Amount,Received_Money,Paid_Back,Date_Of_Purchase")] Purchase purchase)
+        public async Task<IActionResult> Create(PurchaseModel order)
         {
-            //var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Id == purchase.CustomerId);
-            //var employee = await _context.Employees.FirstOrDefaultAsync(c => c.Id == purchase.EmployeeId);
+            var customer = _context.Customers.FirstOrDefault(c => c.Phone.Equals(order.Customer.Phone));
+            var employee = _context.Employees.FirstOrDefault(e => e.Id == order.EmployeeId);
 
-            //purchase.Employee = employee;
-            //purchase.Customer = customer;
+            if (customer == null)
+            {
+                customer = new Customer()
+                {
+                    Phone = order.Customer.Phone,
+                    Name = order.Customer.Name,
+                    Address = order.Customer.Address,
+                };
+                _context.Customers.Add(customer);
+            }
+            
+            if(employee == null)
+            {
+                ViewBag.Messsage = "Khong tim thay thang nhan vien nay";
+                return View();
+            }
 
-            _context.Add(purchase);
+            var purchase = new Purchase()
+            {
+                Customer = customer,
+                purchaseId = Guid.NewGuid().ToString(),
+                Employee = employee,
+                Date_Of_Purchase = DateTime.Now
+            };
+
+            foreach(var detail in order.Products)
+            {
+                var product = _context.Products.FirstOrDefault(p => p.Id == detail.ProductId);
+
+                var pdetail = new PurchaseDetail()
+                {
+                    Purchase = purchase,
+                    Product = product,
+                    Subtotal = detail.Subtotal,
+                    Quantity = detail.Quantity,
+                };
+
+                _context.PurchaseDetails.Add(pdetail);
+                purchase.PurchaseDetails.Add(pdetail);
+            }
+
+            var result = await _context.SaveChangesAsync();
+
+            if(result > 0)
+            {
+                return RedirectToAction("Checkout", "Purchases", new {id = purchase.purchaseId});
+            }
+
+            // _context.Add(purchase);
+            //await _context.SaveChangesAsync();
+            //return RedirectToAction(nameof(Index));
+
+            //ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", purchase.CustomerId);
+            //ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", purchase.EmployeeId);
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Checkout(string id)
+        {
+            var purchase = await _context.PurchaseHistories.FirstOrDefaultAsync(p => p.purchaseId.Equals(id));
+            return View(purchase);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Checkout(string id, [FromForm] double receivedMoney)
+        {
+            var purchase = await _context.PurchaseHistories.FirstOrDefaultAsync(p => p.purchaseId.Equals(id));
+
+            if (purchase == null) return NotFound();
+
+
+            purchase.Received_Money = receivedMoney;
+            purchase.Paid_Back = receivedMoney - purchase.Total_Amount;
+
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
 
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", purchase.CustomerId);
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", purchase.EmployeeId);
-            return View(purchase);
-        }
-
-        // GET: Purchases/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.PurchaseHistories == null)
-            {
-                return NotFound();
-            }
-
-            var purchase = await _context.PurchaseHistories.FindAsync(id);
-            if (purchase == null)
-            {
-                return NotFound();
-            }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", purchase.CustomerId);
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", purchase.EmployeeId);
-            return View(purchase);
-        }
-
-        // POST: Purchases/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,purchaseId,CustomerId,EmployeeId,Total_Amount,Received_Money,Paid_Back,Date_Of_Purchase")] Purchase purchase)
-        {
-            if (id != purchase.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(purchase);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PurchaseExists(purchase.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", purchase.CustomerId);
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", purchase.EmployeeId);
-            return View(purchase);
+            ViewBag.Message = "Thanh toan thanh cong rui ne 🥰 Xin chan thanh cam on quy khach! Hen gap lai lan sau nhaaaaaa!";
+            return View();
         }
 
         // GET: Purchases/Delete/5

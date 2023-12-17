@@ -20,6 +20,6 @@ namespace Point_Of_Sales.Entities
         public double Paid_Back { get; set; }
         public DateTime Date_Of_Purchase { get; set; }
 
-        public virtual ICollection<PurchaseDetail>? PurchaseDetails { get; set; }
+        public virtual ICollection<PurchaseDetail> PurchaseDetails { get; set; }
     }
 }

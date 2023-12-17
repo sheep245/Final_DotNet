@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Point_Of_Sales.Config;
 
 namespace Point_Of_Sales
@@ -17,14 +19,26 @@ namespace Point_Of_Sales
                 options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("MyDBString"));
             });
 
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
+            }).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opt =>
+            {
+                opt.LoginPath = "/Auth";
+                opt.LogoutPath = "/Auth/Logout";
+                opt.Cookie.HttpOnly = true;
+                opt.ExpireTimeSpan = TimeSpan.FromDays(1);
+                opt.SlidingExpiration = true;
+            });
+
 
             var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -33,6 +47,7 @@ namespace Point_Of_Sales
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
