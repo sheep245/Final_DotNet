@@ -19,21 +19,15 @@ namespace Point_Of_Sales
                 options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("MyDBString"));
             });
 
-            builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-
-            }).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opt =>
-            {
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(opt => {
                 opt.LoginPath = "/Auth";
                 opt.LogoutPath = "/Auth/Logout";
-                opt.Cookie.HttpOnly = true;
                 opt.ExpireTimeSpan = TimeSpan.FromDays(1);
                 opt.SlidingExpiration = true;
             });
 
+            builder.Services.AddAuthorization();
 
             var app = builder.Build();
             if (!app.Environment.IsDevelopment())
@@ -48,6 +42,7 @@ namespace Point_Of_Sales
             app.UseRouting();
 
             app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.MapControllerRoute(

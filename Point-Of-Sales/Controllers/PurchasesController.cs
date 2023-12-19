@@ -44,16 +44,15 @@ namespace Point_Of_Sales.Controllers
             return View(purchase);
         }
 
-        public IActionResult Create()
-        {
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id");
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id");
-            return View();
-        }
+        //public IActionResult Create()
+        //{
+        //    ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id");
+        //    ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id");
+        //    return View();
+        //}
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PurchaseModel order)
+        public async Task<IActionResult> Create([FromBody] PurchaseModel order)
         {
             var customer = _context.Customers.FirstOrDefault(c => c.Phone.Equals(order.Customer.Phone));
             var employee = _context.Employees.FirstOrDefault(e => e.Id == order.EmployeeId);
@@ -68,8 +67,8 @@ namespace Point_Of_Sales.Controllers
                 };
                 _context.Customers.Add(customer);
             }
-            
-            if(employee == null)
+
+            if (employee == null)
             {
                 ViewBag.Messsage = "Khong tim thay thang nhan vien nay";
                 return View();
@@ -83,9 +82,9 @@ namespace Point_Of_Sales.Controllers
                 Date_Of_Purchase = DateTime.Now
             };
 
-            foreach(var detail in order.Products)
+            foreach (var detail in order.Products)
             {
-                var product = _context.Products.FirstOrDefault(p => p.Id == detail.ProductId);
+                var product = _context.Products.FirstOrDefault(p => p.Id == detail.Id);
 
                 var pdetail = new PurchaseDetail()
                 {
@@ -101,17 +100,10 @@ namespace Point_Of_Sales.Controllers
 
             var result = await _context.SaveChangesAsync();
 
-            if(result > 0)
+            if (result > 0)
             {
-                return RedirectToAction("Checkout", "Purchases", new {id = purchase.purchaseId});
+                return Ok(new { code = 0, returnUrl = "/Purchases/Checkout/" + purchase.purchaseId });
             }
-
-            // _context.Add(purchase);
-            //await _context.SaveChangesAsync();
-            //return RedirectToAction(nameof(Index));
-
-            //ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", purchase.CustomerId);
-            //ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", purchase.EmployeeId);
             return View();
         }
 

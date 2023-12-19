@@ -13,10 +13,12 @@ namespace Point_Of_Sales.Controllers
     public class AccountsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private IConfiguration _configuration;
 
-        public AccountsController(ApplicationDbContext context)
+        public AccountsController(ApplicationDbContext context, IConfiguration config)
         {
             _context = context;
+            _configuration = config;
         }
 
         // GET: Accounts
@@ -52,9 +54,6 @@ namespace Point_Of_Sales.Controllers
             return View();
         }
 
-        // POST: Accounts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Username,Pwd,Role")] Account account)
@@ -62,6 +61,11 @@ namespace Point_Of_Sales.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(account);
+
+                // Send email
+
+
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
