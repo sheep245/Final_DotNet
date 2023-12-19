@@ -4,23 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../public/stylesheets/nav.css" rel="stylesheet">
+    <link href="/stylesheets/nav.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
     <nav>
-        <ul>
-            <li><a href="product.html"><i class="fas fa-box-open"></i> Product</a></li>
-            <li><a href="employee.html"><i class="fas fa-user-friends"></i> Employee</a></li>
-            <li><a href="statistic.html"><i class="fas fa-chart-line"></i> Statistic</a></li>
-            <li style="float: right;"><a href="#Login"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
+        <ul class="navigationBar">
+            <li class="items"><a href="/product"><i class="fas fa-box-open"></i> Product</a></li>
+            <li class="items"><a href="/transaction"><i class="fas fa-cash-register"></i> Transaction</a></li>
+            <li class="items"><a href="/customer"><i class="fas fa-user-check"></i> Customer</a></li>
 
-            <li class="dropdown" style="float:right" href="#Account"><a href="account.html" class="drop-menu"><i
-                        class="fas fa-user-circle"></i> Account</a>
+            <li class="items"><a href="/employee"><i class="fas fa-users"></i> Employee</a></li>
+            <li class="items" style="float: right;"><a href="/account/logout"><i class="fas fa-sign-out-alt"></i> Log
+                    out</a>
+            </li>
+
+            <li class="dropdown" style="float:right">
+                <span class="drop-menu" style="cursor: default;">
+                    <i class="fas fa-user-circle"></i> Account
+                </span>
                 <div class="sub-menu">
-                    <a href="profile.html"><i class="fas fa-id-card"></i> Profile</a>
-                    <a href="changePassword.html"><i class="fas fa-key"></i> Change Password</a>
+                    <a href="/account/profile"><i class="fas fa-id-card"></i> Profile</a>
+                    <a href="/account/changePassword"><i class="fas fa-key"></i> Change Password</a>
                 </div>
             </li>
         </ul>
