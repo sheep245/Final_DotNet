@@ -1,0 +1,393 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Point-Of-Sales.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Point-Of-Sales.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\UserChangePassword.css",
+      "PackagePath": "staticwebassets\\css\\UserChangePassword.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\account.css",
+      "PackagePath": "staticwebassets\\css\\account.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\changePassword.css",
+      "PackagePath": "staticwebassets\\css\\changePassword.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\confirmResetPwd.css",
+      "PackagePath": "staticwebassets\\css\\confirmResetPwd.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\createPassword.css",
+      "PackagePath": "staticwebassets\\css\\createPassword.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\employee.css",
+      "PackagePath": "staticwebassets\\css\\employee.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\footer.css",
+      "PackagePath": "staticwebassets\\css\\footer.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\forgotPassword.css",
+      "PackagePath": "staticwebassets\\css\\forgotPassword.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\home.css",
+      "PackagePath": "staticwebassets\\css\\home.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\mailPwd.css",
+      "PackagePath": "staticwebassets\\css\\mailPwd.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\nav.css",
+      "PackagePath": "staticwebassets\\css\\nav.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\product.css",
+      "PackagePath": "staticwebassets\\css\\product.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\profile.css",
+      "PackagePath": "staticwebassets\\css\\profile.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\statistic.css",
+      "PackagePath": "staticwebassets\\css\\statistic.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\avatar.png",
+      "PackagePath": "staticwebassets\\images\\avatar.png"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\background.png",
+      "PackagePath": "staticwebassets\\images\\background.png"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\favicon.png",
+      "PackagePath": "staticwebassets\\images\\favicon.png"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\iphone.png",
+      "PackagePath": "staticwebassets\\images\\iphone.png"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\static\\account.html",
+      "PackagePath": "staticwebassets\\static\\account.html"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\static\\changePassword.html",
+      "PackagePath": "staticwebassets\\static\\changePassword.html"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\static\\createPassword.html",
+      "PackagePath": "staticwebassets\\static\\createPassword.html"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\static\\employee.html",
+      "PackagePath": "staticwebassets\\static\\employee.html"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\static\\footer.html",
+      "PackagePath": "staticwebassets\\static\\footer.html"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\static\\forgotPassword.html",
+      "PackagePath": "staticwebassets\\static\\forgotPassword.html"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\static\\home.html",
+      "PackagePath": "staticwebassets\\static\\home.html"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\static\\login.html",
+      "PackagePath": "staticwebassets\\static\\login.html"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\static\\nav.html",
+      "PackagePath": "staticwebassets\\static\\nav.html"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\static\\product.html",
+      "PackagePath": "staticwebassets\\static\\product.html"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\static\\profile.html",
+      "PackagePath": "staticwebassets\\static\\profile.html"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\static\\statistic.html",
+      "PackagePath": "staticwebassets\\static\\statistic.html"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Point-Of-Sales.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Point-Of-Sales.props",
+      "PackagePath": "build\\Point-Of-Sales.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Point-Of-Sales.props",
+      "PackagePath": "buildMultiTargeting\\Point-Of-Sales.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Point-Of-Sales.props",
+      "PackagePath": "buildTransitive\\Point-Of-Sales.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
