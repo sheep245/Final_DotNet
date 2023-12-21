@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Point_Of_Sales.Config;
 using System.Security.Claims;
@@ -22,6 +23,11 @@ namespace Point_Of_Sales.Controllers
         [HttpPost]
         public async Task<IActionResult> Index([FromForm] string username, [FromForm] string password)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+               return RedirectToAction("Index", "Home");
+            }
+
             var _account = _context.Accounts.FirstOrDefault(a => a.Username.Equals(username) && a.Pwd.Equals(password));
 
             if (_account == null)
@@ -31,12 +37,24 @@ namespace Point_Of_Sales.Controllers
             }
 
             var claims = new List<Claim>() {
-                //new Claim(ClaimTypes.Name, _account.Employee.Fullname),
-                //new Claim(ClaimTypes.Email, _account.Employee.Email),
                 new Claim(ClaimTypes.Role, _account.Role),
             };
-            var identity = new ClaimsIdentity(claims);
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+
+            if (_account.Employee != null)
+            {
+                claims.Add(new Claim(ClaimTypes.Name, _account.Employee.Fullname));
+                claims.Add(new Claim(ClaimTypes.Email, _account.Employee.Email));
+            }
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = true, // Set to true for a persistent cookie
+                ExpiresUtc = DateTimeOffset.UtcNow.Add(TimeSpan.FromDays(1)) // Adjust the expiration time as needed
+            };
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), authProperties);
 
             return RedirectToAction("Index", "Home");
         }
@@ -46,6 +64,5 @@ namespace Point_Of_Sales.Controllers
             await HttpContext.SignOutAsync();
             return RedirectToAction("Index");   
         }
-
     }
 }

@@ -1,5 +1,56 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model Point_Of_Sales.Entities.Purchase
+
+<div class="container mt-4">
+    <div class="row justify-content-lg-around">
+        <div class="col-lg-5">
+            <h5>Customer name: @Model.Customer.Name</h5>
+            <h5>Phone: @Model.Customer.Phone</h5>
+            <h5>Address: @Model.Customer.Address</h5>
+        </div>
+        <div class="col-lg-5 ">
+            <h5>Invoice ID: @Model.purchaseId </h5>
+            <h5>Invoice creation day: @Model.Date_Of_Purchase</h5>
+            <h5>Staff: @Model.Employee.Id</h5>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Product name</th>
+                    <th>Quantity</th>
+                    <th>Retail price</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.PurchaseDetails)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@p.Product.Product_Name</td>
+                        <td>@p.Quantity</td>
+                        <td>@p.Product.Retail_Price</td>
+                        <td>@p.Subtotal</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-lg-8"></div>
+        <div class="col-lg-4">
+            <h4 style="color:darkred">Total amount: @Model.Total_Amount</h4>
+            <form>
+                <input asp-for="Id" type="hidden" />
+                <div class="form-group">
+                    <label for="received">Receive Money</label>
+                    <input id="received" name="receivedMoney" type="number" class="form-control" />
+                </div>
+            </form>
+            <p>Paid back: 0</p>
+        </div>
+    </div>
+</div>
+

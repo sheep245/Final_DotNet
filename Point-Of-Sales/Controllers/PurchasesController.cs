@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -36,9 +37,15 @@ namespace Point_Of_Sales.Controllers
             }
 
             var purchase = await _context.PurchaseHistories.FirstOrDefaultAsync(m => m.purchaseId.Equals(id));
+
             if (purchase == null)
             {
                 return NotFound();
+            }
+
+            if (purchase.Received_Money == 0)
+            {
+                return RedirectToAction("Checkout", new { id = purchase.purchaseId });
             }
 
             return View(purchase);
@@ -55,7 +62,11 @@ namespace Point_Of_Sales.Controllers
         public async Task<IActionResult> Create([FromBody] PurchaseModel order)
         {
             var customer = _context.Customers.FirstOrDefault(c => c.Phone.Equals(order.Customer.Phone));
-            var employee = _context.Employees.FirstOrDefault(e => e.Id == order.EmployeeId);
+
+
+            var email = HttpContext.User.FindFirst(ClaimTypes.Email)?.Value;
+
+            var employee = _context.Employees.FirstOrDefault(e => e.Email.Equals(email));
 
             if (customer == null)
             {
@@ -70,8 +81,7 @@ namespace Point_Of_Sales.Controllers
 
             if (employee == null)
             {
-                ViewBag.Messsage = "Khong tim thay thang nhan vien nay";
-                return View();
+                return Ok( new { Code = 1, Message = "Khong tim thay thang nhan vien nay" });
             }
 
             var purchase = new Purchase()
@@ -93,7 +103,7 @@ namespace Point_Of_Sales.Controllers
                     Subtotal = detail.Subtotal,
                     Quantity = detail.Quantity,
                 };
-
+                purchase.Total_Amount += (double)detail.Subtotal;
                 _context.PurchaseDetails.Add(pdetail);
                 purchase.PurchaseDetails.Add(pdetail);
             }
@@ -143,6 +153,7 @@ namespace Point_Of_Sales.Controllers
                 .Include(p => p.Customer)
                 .Include(p => p.Employee)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (purchase == null)
             {
                 return NotFound();

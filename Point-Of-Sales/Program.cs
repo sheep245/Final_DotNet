@@ -23,8 +23,9 @@ namespace Point_Of_Sales
                 .AddCookie(opt => {
                 opt.LoginPath = "/Auth";
                 opt.LogoutPath = "/Auth/Logout";
-                opt.ExpireTimeSpan = TimeSpan.FromDays(1);
+                opt.ExpireTimeSpan = TimeSpan.FromHours(1);
                 opt.SlidingExpiration = true;
+  
             });
 
             builder.Services.AddAuthorization();

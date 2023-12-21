@@ -60,6 +60,8 @@ namespace Point_Of_Sales.Controllers
         {
             if (ModelState.IsValid)
             {
+                product.Is_Deleted = true;
+                product.Creation_Date = DateTime.Now;
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -138,9 +140,8 @@ namespace Point_Of_Sales.Controllers
 
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
-        {
+        {   
             if (_context.Products == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Products'  is null.");
