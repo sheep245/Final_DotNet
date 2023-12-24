@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    var IsAdmin = User.IsInRole("Admin");
 }
 
 <div class="container">
@@ -18,15 +19,12 @@
                 </th>
                 <th>
                     Product Name
-                    @*@Html.DisplayNameFor(model => model.Product_Name)*@
                 </th>
                 <th>
                     Import Price
-                    @*@Html.DisplayNameFor(model => model.Import_Price)*@
                 </th>
                 <th>
                     Retail Price
-                    @*@Html.DisplayNameFor(model => model.Retail_Price)*@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Category)
@@ -56,8 +54,11 @@
                     <td>
                         @*<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary mr-2">Edit</a>*@
                         <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary mr-2">Details</a>
-                        @*<a asp-action="Delete" asp-route-id="@item.Id" data-id="@item.Id" class="btn btn-danger mr-2">Delete</a>*@
-                        <button onclick="handleDelete(this)" data-id="@item.Id" class="btn btn-danger mr-2">Delete</button>
+                        
+                        @if (IsAdmin)
+                        {
+                            <button onclick="handleDelete(this)" data-id="@item.Id" class="btn btn-danger mr-2">Delete</button>
+                        }
                     </td>
                 </tr>
             }

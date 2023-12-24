@@ -4,39 +4,95 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="container">
 
-<div>
-    <h4>Account</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Employee.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Pwd)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Pwd)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Role)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Role)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn text-primary">Back to List</a>
+    <div class="row">
+        <div class="col-md-5">
+            <img src="~/images/avatar.png" style="width:100%;height:100%; object-fit:contain" />
+        </div>
+        <div class="col-md-4">
+            <h4 class="text-center py-1">@Model.Employee.Fullname</h4>
+            <form asp-action="Edit" method="post" class="w-100 mx-0">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label class="control-label">Full Name</label>
+                    <input name="FullName" value="@Model.Employee.Fullname" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-grkoup">
+                    <label class="control-label">Email</label>
+                    <input name="Email" value="@Model.Employee.Email" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Role" class="control-label">Role</label>
+                    <input asp-for="Role" class="form-control" />
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="StoreId" class="control-label">Store</label>
+                    <select name="RetailStoreId" id="StoreId" class="form-control">
+                        @foreach (var store in ViewBag.Stores)
+                        {
+                            if (Model.Employee.RetailStoreId == store.Id)
+                            {
+                                <option value="@store.Id" selected>@store.Name</option>
+                            }
+                            else
+                            {
+
+                                <option value="@store.Id">@store.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save Changes" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h1>Details</h1>
+
+    <div>
+        <h4>Account</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Employee)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Employee.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Pwd)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Pwd)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Role)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Role)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+
+
 </div>

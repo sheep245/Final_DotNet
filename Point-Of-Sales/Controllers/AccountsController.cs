@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 using Point_Of_Sales.Config;
 using Point_Of_Sales.Entities;
+using Point_Of_Sales.Models;
 
 namespace Point_Of_Sales.Controllers
 {
@@ -43,33 +45,79 @@ namespace Point_Of_Sales.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.Stores = _context.RetailStores.ToList();
             return View(account);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateStatus(int id)
+        {
+            var account = _context.Accounts.FirstOrDefault(a => a.Id == id);
+
+            account.Employee.Status = !account.Employee.Status;
+
+            var result = await _context.SaveChangesAsync();
+            if (result > 0)
+            {
+                return Ok(new { code = 0, status = account.Employee.Status, Message = "Change Status Successfully!" });
+            }
+
+            return Ok(new { code = 1, Message = "Change Status Failed!" });
+
+        }
+
+
+        public async Task<IActionResult> Resend(string username)
+        {
+            return Ok();
         }
 
         // GET: Accounts/Create
         public IActionResult Create()
         {
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id");
+            // ViewData["Stores"] = new SelectList(_context.RetailStores, "Id", "Name");
+            ViewBag.Stores = _context.RetailStores.ToList();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Username,Pwd,Role")] Account account)
+        public async Task<IActionResult> Create(AccountModel account)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(account);
+                var username = account.Email.Split("@")[0].Trim();
+                var pwd = username;
 
-                // Send email
+                var store = _context.RetailStores.FirstOrDefault(s => s.Id == account.RetailStoreId);
 
+                var newAccount = new Account()
+                {
+                    Username = username,
+                    Pwd = pwd,
+                    Role = Helpers.Convert.Capitalize(account.Role),
+                };
 
+                var employee = new Employee()
+                {
+                    Account = newAccount,
+                    Fullname = account.Fullname,
+                    Email = account.Email,
+                    RetailStore = store
+                };
 
-                await _context.SaveChangesAsync();
+                _context.Employees.Add(employee);
+                _context.Accounts.Add(newAccount);
+
+                var result = await _context.SaveChangesAsync();
+
+                // Create link verify
+
+                // Send  email with link 
+
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", account.EmployeeId);
+            ViewBag.Stores = _context.RetailStores.ToList();
             return View(account);
         }
 
@@ -90,40 +138,34 @@ namespace Point_Of_Sales.Controllers
             return View(account);
         }
 
-        // POST: Accounts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,EmployeeId,Username,Pwd,Role")] Account account)
+        public async Task<IActionResult> Edit(int id, [FromForm] AccountModel newAccount)
         {
-            if (id != account.Id)
+            var account = _context.Accounts.FirstOrDefault(a => a.Id == id);
+
+            if (account == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            account.Employee.Fullname = newAccount.Fullname;
+            account.Role = newAccount.Role;
+            account.Employee.RetailStoreId = newAccount.RetailStoreId;
+
+            var result = await _context.SaveChangesAsync();
+
+            if (result > 0)
             {
-                try
-                {
-                    _context.Update(account);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AccountExists(account.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", account.EmployeeId);
-            return View(account);
+
+            return RedirectToAction("Details", new { id = id });
+
+        }
+
+        public async Task<IActionResult> Profile(int id)
+        {
+            return View();
         }
 
         // GET: Accounts/Delete/5
@@ -147,7 +189,6 @@ namespace Point_Of_Sales.Controllers
 
         // POST: Accounts/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Accounts == null)
@@ -159,14 +200,14 @@ namespace Point_Of_Sales.Controllers
             {
                 _context.Accounts.Remove(account);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AccountExists(int id)
         {
-          return (_context.Accounts?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Accounts?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

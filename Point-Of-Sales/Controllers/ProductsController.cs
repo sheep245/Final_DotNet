@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Point_Of_Sales.Config;
 using Point_Of_Sales.Entities;
+using Point_Of_Sales.Helpers;
 
 namespace Point_Of_Sales.Controllers
 {
@@ -26,6 +28,14 @@ namespace Point_Of_Sales.Controllers
                         View(await _context.Products.ToListAsync()) :
                         Problem("Entity set 'ApplicationDbContext.Products'  is null.");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Search([FromQuery]string q)
+        {
+            var products = await _context.Products.Where(p => p.Barcode.Equals(q) || p.Product_Name.Contains(q)).ToListAsync();
+            return Ok(new { code = 0, products = products });
+        }
+
 
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -51,17 +61,21 @@ namespace Point_Of_Sales.Controllers
             return View();
         }
 
-        // POST: Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date")] Product product, IFormFile file)
         {
             if (ModelState.IsValid)
             {
                 product.Is_Deleted = true;
                 product.Creation_Date = DateTime.Now;
+
+                if (file != null)
+                {
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images", "products", $"product-{product.Id}");
+                    FileProcess.FileUpload(file, filePath);
+                }
+
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -85,12 +99,9 @@ namespace Point_Of_Sales.Controllers
             return View(product);
         }
 
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date,Is_Deleted")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date,Is_Deleted")] Product product, IFormFile file)
         {
             if (id != product.Id)
             {
@@ -101,9 +112,16 @@ namespace Point_Of_Sales.Controllers
             {
                 try
                 {
+                    if (file != null)
+                    {
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images", "products", $"product-{product.Id}");
+                        FileProcess.FileUpload(file, filePath);
+                    }
+
                     _context.Update(product);
                     await _context.SaveChangesAsync();
                 }
+
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!ProductExists(product.Id))
@@ -141,7 +159,7 @@ namespace Point_Of_Sales.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
-        {   
+        {
             if (_context.Products == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Products'  is null.");

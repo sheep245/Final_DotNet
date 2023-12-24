@@ -4,50 +4,128 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container mt-4">
+    @*<h1>Index</h1>*@
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Employee)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Username)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pwd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Role)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Username)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pwd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+    <p>
+        <a asp-action="Create" class="btn btn-sm btn-primary">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Full Name
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Role)
+                </th>
+                <th>
+                    Store
+                </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="data-@item.Id">
+                    <td></td>
+                    @if (item.Employee.Status)
+                    {
+                        <td>
+                            <span onclick="changeStatus(this)" data-id="@item.Id" class="btn btn-sm btn-success">Active</span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <span onclick="changeStatus(this)" data-id="@item.Id" class="btn btn-sm btn-danger">Locked</span>
+                        </td>
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.Fullname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.RetailStore.Name)
+                    </td>
+                    <td>
+                        @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>*@
+
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-success">Details</a>
+                        <button onclick="handleDelete(this)" data-id="@item.Id" class="btn btn-sm btn-danger">Delete</button>
+                        @if (item.Employee.Status == false)
+                        {
+                            <a class="btn btn-sm" style="background-color: #ffe6a7">Send Verify</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <script>
+        async function handleDelete(button) {
+            const { id } = button.dataset;
+            if (confirm("Do you want to delete this product?")) {
+                const result = await fetch("/Accounts/Delete/" + id, { method: "POST" })
+                if (result.ok) {
+                    alert("Delete successfully! 😏");
+                    document.querySelector(`#data-${id}`).remove();
+                }
+            } else {
+                return;
+            }
+        }
+
+        async function changeStatus(button) {
+            const { id } = button.dataset
+
+            await fetch("/Accounts/UpdateStatus/" + id, { method: "POST" })
+                .then(async (res) => {
+                    const data = await res.json();
+                    console.log(data)
+                    if (data.code == 0) {
+                        if (data.status) {
+                            button.classList.remove("btn-danger")
+                            button.classList.add("btn-success")
+                            button.textContent = "Active"
+                        } else {
+                            console.log(data.status)
+                            button.classList.remove("btn-success")
+                            button.classList.add("btn-danger")
+                            button.textContent = "Locked"
+                        }
+
+                    } else {
+                        console.log(data)
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+        }
+
+    </script>
 }
-    </tbody>
-</table>

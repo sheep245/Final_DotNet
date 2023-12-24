@@ -1,8 +1,7 @@
-﻿@model Point_Of_Sales.Entities.Account
+﻿@model Point_Of_Sales.Models.AccountModel
 
 @{
-    ViewData["Title"] = "Create";
-    Layout = "";
+    ViewData["Title"] = "POS | Create";
 }
 
 <h1>Create</h1>
@@ -10,33 +9,46 @@
 <h4>Account</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form asp-action="Create">
+        <div class="col-md-6">
             <div class="form-group">
-                <label asp-for="EmployeeId" class="control-label"></label>
-                <select asp-for="EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
+                <label for="StoreId" class="control-label">Store</label>
+                <select name="RetailStoreId" id="StoreId" class="form-control">
+                    @foreach (var store in ViewBag.Stores)
+                    {
+                        <option value="@store.Id">@store.Name</option>
+                    }
+                </select>
             </div>
+        </div>
+        <div class="col-md-6">
             <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
+                <label for="fname" class="control-label">Full name: *</label>
+                <input name="Fullname" id="fname" class="form-control" required />
             </div>
+        </div> <div class="col-md-6">
             <div class="form-group">
-                <label asp-for="Pwd" class="control-label"></label>
-                <input asp-for="Pwd" class="form-control" />
-                <span asp-validation-for="Pwd" class="text-danger"></span>
+                <label for="email" class="control-label">Email: *</label>
+                <input type="email" id="email" name="Email" class="form-control" required />
             </div>
+        </div>
+        <div class="col-md-6">
             <div class="form-group">
                 <label asp-for="Role" class="control-label"></label>
                 <input asp-for="Role" class="form-control" />
                 <span asp-validation-for="Role" class="text-danger"></span>
             </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
 
 <div>
@@ -44,5 +56,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

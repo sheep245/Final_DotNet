@@ -1,4 +1,8 @@
-﻿<nav class="navbar navbar-expand-lg navbar-light bg-light">
+﻿@{
+    var Name = User.Identity.Name ?? "N/A";
+    var IsAdmin = User.IsInRole("Admin");
+}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -6,7 +10,9 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link">Home</a>
+                <a href="/" class="nav-link">
+                    <img src="/images/logo.png" width="20px" />
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/">Sales</a>
@@ -15,18 +21,21 @@
                 <a asp-controller="Purchases" class="nav-link">Purchases</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Management
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a asp-controller="Products" class="dropdown-item">Products</a>
-                    <a asp-controller="Accounts" class="dropdown-item">Accounts</a>
-                    <a asp-controller="RetailStores" class="dropdown-item">Retail Stores</a>
+                    <a asp-controller="Products" asp-action="Index" class="dropdown-item">Products</a>
+                    @if (IsAdmin)
+                    {
+                        <a asp-controller="Accounts" asp-action="Index" class="dropdown-item">Accounts</a>
+                        <a asp-controller="RetailStores" asp-action="Index" class="dropdown-item">Retail Stores</a>
+                    }
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    USERNAME
+                    @Name
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item">Profile</a>
@@ -36,30 +45,32 @@
             </li>
         </ul>
     </div>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="form-inline">
+        <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button onclick="handleSearch()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </div>
 </nav>
 
-@*<nav>
-    <ul>
-        <li><a asp-controller="Products"><i class="fas fa-box-open"></i> Product Management</a></li>
-        <li><a asp-controller="Accounts"><i class="fas fa-user-friends"></i>Account Management</a></li>
-        <li><a asp-controller="Purchases"><i class="fas fa-user-friends"></i> Purchases Management</a></li>
-        <li><a asp-controller="RetailStores"><i class="fas fa-user-friends"></i> Retail Stores Management</a></li>
+@section Scripts{
+    <script>
+        await function handleSearch() {
+            const value = document.querySelector("#searchInput").ariaValueMax
 
-        <li><a href="statistic.html"><i class="fas fa-chart-line"></i> Statistic</a></li>
-        <li style="float: right;"><a href="#Login"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
+            if (value) {
+                return;
+            }
 
-        <li class="dropdown" style="float:right" href="#Account">
-            <a href="account.html" class="drop-menu">
-                <i class="fas fa-user-circle"></i> Account
-            </a>
-            <div class="sub-menu">
-                <a href="profile.html"><i class="fas fa-id-card"></i> Profile</a>
-                <a href="changePassword.html"><i class="fas fa-key"></i> Change Password</a>
-            </div>
-        </li>
-    </ul>
-</nav>*@
+            await fetch("/products/search?q=" + value, {
+                method: "GET"
+            }).then(async (res) => {
+                const data = await res.json();
+
+                console.log(data.products)
+
+            }).catch(err => {
+                console.log(err)
+            })
+
+        }
+    </script>
+}

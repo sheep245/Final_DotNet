@@ -20,6 +20,7 @@ namespace Point_Of_Sales.Controllers
             ViewBag.Message = TempData["Message"];
             return View("Login");
         }
+        
         [HttpPost]
         public async Task<IActionResult> Index([FromForm] string username, [FromForm] string password)
         {
@@ -63,6 +64,24 @@ namespace Point_Of_Sales.Controllers
         {
             await HttpContext.SignOutAsync();
             return RedirectToAction("Index");   
+        }
+    
+        public async Task<IActionResult> Verify([FromQuery]string username, [FromQuery]string token, [FromQuery]string expire)
+        {
+            var account = _context.Accounts.FirstOrDefault(a => a.Username.Equals(username));
+
+            if (account == null) { 
+                // return fail
+                return NotFound();
+            }
+
+            // validate time
+
+            // if valid update database
+
+            // else return verify false
+
+            return View();
         }
     }
 }

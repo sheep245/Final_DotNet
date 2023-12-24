@@ -6,16 +6,16 @@
 @*
 san pham *@
 
-<div class="row py-1 flex-lg-wrap justify-content-center" style="height: calc(100vh - 90px)">
+<div class="row py-1 justify-content-center" style="height: calc(100vh - 90px); padding-left: 15px;">
 
-    <div class="row col-lg-9 overflow-auto" style="height:100%">
+    <div class="row col-lg-9 overflow-auto px-2" style="height:100%;">
         @foreach (var product in Model)
         {
-            <div class="col-lg-3 mb-2 mx-2">
-                <div class="card" style="width: 18rem;">
+            <div class="mb-2 px-0 mx-1" style="width:32%">
+                <div class="card">
                     <img src="~/images/iphone.png" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">@product.Product_Name</h5>
+                        <h5 class="card-title text-truncate" data-toggle="tooltip" data-placement="top" title="@product.Product_Name">@product.Product_Name</h5>
                         <p class="card-text">$@product.Retail_Price</p>
                         <button class="btn btn-primary"
                                 onclick="addToTable(this)"
@@ -32,37 +32,35 @@ san pham *@
     <div class="col-lg-3">
         <h5 class="text-center">Selected products</h5>
         @*<hr />*@
-        <form>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>No</th>
-                        <th>Name</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody id="list-products">
-                    <tr>
-                        <td>1</td>
-                        @*<td class="text-truncate">Lê Cẩm Tú</td>
-                        <td class="text-center">
-                            <input type="number" value="1" onchange="updateQuantity" style="width:50px" min="1" />
-                        </td>
-                        <td>8 ngang</td>*@
-                    </tr>
-                </tbody>
-            </table>
-            <hr />
-            <div id="footer" class="d-flex justify-content-between align-items-center px-4">
-                <span id="total">Total: 0</span>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="list-products">
+                <tr>
+                    <td>1</td>
+                    <td class="text-truncate">Lê Cẩm Tú</td>
+                    <td class="text-center">
+                        <input type="number" value="1" onchange="updateQuantity" style="width:50px" min="1" />
+                    </td>
+                    <td>8 ngang</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <div id="footer" class="d-flex justify-content-between align-items-center px-4">
+            <span id="total">Total: 0</span>
 
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Check out
-                </button>
-            </div>
-        </form>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Check out
+            </button>
+        </div>
 
     </div>
 </div>
@@ -90,7 +88,7 @@ san pham *@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a class="btn btn-primary text-white" >Purchases history</a>
+                <a class="btn btn-primary text-white">Purchases history</a>
                 <button onclick="handleCheckout()" type="button" class="btn btn-primary">Checkout</button>
             </div>
         </div>
@@ -150,7 +148,7 @@ san pham *@
             }).then(async (res) => {
                 const data = await res.json()
 
-                if(data.code == 0){
+                if (data.code == 0) {
                     window.location.href = data.returnUrl;
                 }
 
@@ -175,22 +173,21 @@ san pham *@
                     subtotal: sub
                 })
             } else {
-                cart.map(c => {
-                    if (c.productid == id) {
-                        c.quan = c.quan + 1;
-                        c.subtotal = c.price * c.quan;
-                    } else {
-                        let sub = parseFloat(price);
-                        console.log(sub)
-                        cart.push({
-                            productid: id,
-                            name: name,
-                            price: parseFloat(price),
-                            quan: 1,
-                            subtotal: sub
-                        })
-                    }
-                })
+                const exist = cart.findIndex(p => p.productid === id)
+                console.log(cart[exist])
+
+                if (exist != -1) {
+                    cart[exist].quan = cart[exist].quan + 1;
+                    cart[exist].subtotal = cart[exist].price * cart[exist].quan
+                } else {
+                    cart.push({
+                        productid: id,
+                        name: name,
+                        price: parseFloat(price),
+                        quan: 1,
+                        subtotal: parseFloat(price)
+                    })
+                }
             }
 
             renderTable(cart)
@@ -237,13 +234,13 @@ san pham *@
                 const row = document.createElement("tr")
                 row.setAttribute("id", `data-${item.productid}`)
                 const rowContent = `
-                                   <td data-id="${item.productid}" class="text-danger btn" onclick="handleDelete(this)">x</td>
-                                   <td>${no}</td>
-                                   <td class="text-truncate">${item.name}</td>
-                                   <td class="text-center">
-                                    <input data-id="${item.productid}" type="number" onchange="updateQuantity(this)" value="${item.quan}" style="width:50px" min="1" />
-                                   </td>
-                                   <td>${item.subtotal}</td>`
+                                           <td data-id="${item.productid}" class="text-danger btn" onclick="handleDelete(this)">x</td>
+                                           <td>${no}</td>
+                                           <td class="text-truncate">${item.name}</td>
+                                           <td class="text-center">
+                                            <input data-id="${item.productid}" type="number" onchange="updateQuantity(this)" value="${item.quan}" style="width:50px" min="1" />
+                                           </td>
+                                           <td>${item.subtotal}</td>`
                 row.innerHTML = rowContent;
                 total += item.subtotal
                 listProducts.appendChild(row)
