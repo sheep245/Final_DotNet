@@ -36,7 +36,6 @@ namespace Point_Of_Sales.Controllers
             return Ok(new { code = 0, products = products });
         }
 
-
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -65,8 +64,8 @@ namespace Point_Of_Sales.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date")] Product product, IFormFile file)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 product.Is_Deleted = true;
                 product.Creation_Date = DateTime.Now;
 
@@ -79,7 +78,7 @@ namespace Point_Of_Sales.Controllers
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
+            // }
             return View(product);
         }
 

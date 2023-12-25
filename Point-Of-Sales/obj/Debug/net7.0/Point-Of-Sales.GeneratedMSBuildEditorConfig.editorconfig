@@ -10,11 +10,17 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Point_Of_Sales
 build_property.RootNamespace = Point_Of_Sales
 build_property.ProjectDir = D:\Downloads\DOTNET - Final Project (23-12-2023)\Source\Point-Of-Sales\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = D:\Downloads\DOTNET - Final Project (23-12-2023)\Source\Point-Of-Sales
 build_property._RazorSourceGeneratorDebug = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Accounts/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Accounts/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcQ3JlYXRlLmNzaHRtbA==
@@ -34,6 +40,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Accounts/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Accounts/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Downloads/DOTNET - Final Project (23-12-2023)/Source/Point-Of-Sales/Views/Auth/Login.cshtml]

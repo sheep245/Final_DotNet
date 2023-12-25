@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol.Plugins;
 using Point_Of_Sales.Config;
 using Point_Of_Sales.Entities;
+using Point_Of_Sales.Helpers;
 using Point_Of_Sales.Models;
 
 namespace Point_Of_Sales.Controllers
@@ -112,8 +113,17 @@ namespace Point_Of_Sales.Controllers
                 var result = await _context.SaveChangesAsync();
 
                 // Create link verify
+                if (result > 0)
+                {
+                    string subject = "";
+                    var link = $"{Request.Scheme}://{Request.Host}" + Helpers.HelperConfirm.Generatelink(username);
 
-                // Send  email with link 
+                    string content = $"Welcome to my app. Please click <a href=\"{link}\"> here </a> to active your account.";
+
+                    var mailer = new Mailer(_configuration);
+
+                    mailer.SendEmail(account.Email, subject, content);
+                }
 
                 return RedirectToAction(nameof(Index));
             }
@@ -163,9 +173,67 @@ namespace Point_Of_Sales.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> ReSend(int id)
+        {
+            var account = await _context.Accounts.FindAsync(id);
+
+            string subject = "";
+            var link = $"{Request.Scheme}://{Request.Host}" + Helpers.HelperConfirm.Generatelink(account.Username);
+
+            string content = $"Welcome to my app. Please click <a href=\"{link}\"> here </a> to active your account.";
+
+            var mailer = new Mailer(_configuration);
+
+            mailer.SendEmail(account.Employee.Email, subject, content);
+
+            return Ok();
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Profile(int id)
         {
-            return View();
+            var profile = (await _context.Accounts.FindAsync(id));
+
+            if (profile == null) return NotFound();
+            
+            return View(profile);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(int id, [FromForm] string CurPwd, [FromForm] string NewPwd, [FromForm] string Confirm)
+        {
+            var account = (await _context.Accounts.FindAsync(id));
+
+            if (account == null) return NotFound();
+
+            if (!CurPwd.Equals(account.Pwd))
+            {
+                TempData["Message"] = "Your current password does not match.";
+                return RedirectToAction("ChangePassword", new { id = id });
+            }
+
+            if (!NewPwd.Equals(Confirm))
+            {
+                TempData["Message"] = "Confirm new password is not correct.";
+                return RedirectToAction("ChangePassword", new { id = id });
+            }
+
+            account.Pwd = NewPwd;
+            await _context.SaveChangesAsync();
+            TempData["Message"] = "Change password successfully.";
+
+            return RedirectToAction("ChangePassword", new { id = id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ChangePassword(int id)
+        {
+            var account = (await _context.Accounts.FindAsync(id));
+
+            if (account == null) return NotFound();
+
+            return View(account);
         }
 
         // GET: Accounts/Delete/5
@@ -203,6 +271,14 @@ namespace Point_Of_Sales.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Search([FromQuery]string q)
+        {
+            var customer = _context.Customers.FirstOrDefault(c => c.Phone.Equals(q));
+            if (customer == null) return Ok();
+            return Ok(new {phone = customer.Phone, name = customer.Name, address = customer.Address});
         }
 
         private bool AccountExists(int id)

@@ -22,8 +22,14 @@ namespace Point_Of_Sales.Controllers
         }
 
         // GET: Purchases
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery]string q)
         {
+            if(q != null)
+            {
+                var customerPurchases = await _context.PurchaseHistories.Where(p => p.Customer.Phone.Equals(q)).ToListAsync();
+                return View(customerPurchases);
+            }
+
             var purchases = await _context.PurchaseHistories.ToListAsync();
             return View(purchases);
         }
@@ -131,14 +137,11 @@ namespace Point_Of_Sales.Controllers
 
             if (purchase == null) return NotFound();
 
-
             purchase.Received_Money = receivedMoney;
             purchase.Paid_Back = receivedMoney - purchase.Total_Amount;
 
             await _context.SaveChangesAsync();
-
-            ViewBag.Message = "Thanh toan thanh cong rui ne 🥰 Xin chan thanh cam on quy khach! Hen gap lai lan sau nhaaaaaa!";
-            return View();
+            return RedirectToAction("Details", new {id = id});
         }
 
         // GET: Purchases/Delete/5

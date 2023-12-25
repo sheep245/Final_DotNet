@@ -257,3 +257,4 @@ D:\Downloads\DOTNET - Final Project (23-12-2023)\Source\Point-Of-Sales\bin\Debug
 D:\Downloads\DOTNET - Final Project (23-12-2023)\Source\Point-Of-Sales\bin\Debug\net7.0\MimeKit.dll
 D:\Downloads\DOTNET - Final Project (23-12-2023)\Source\Point-Of-Sales\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
 D:\Downloads\DOTNET - Final Project (23-12-2023)\Source\Point-Of-Sales\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll
+D:\Downloads\DOTNET - Final Project (23-12-2023)\Source\Point-Of-Sales\obj\Debug\net7.0\Point-Of-Sales.sourcelink.json

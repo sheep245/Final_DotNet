@@ -38,19 +38,37 @@
             </tbody>
         </table>
     </div>
+
     <div class="row">
         <div class="col-lg-8"></div>
         <div class="col-lg-4">
             <h4 style="color:darkred">Total amount: @Model.Total_Amount</h4>
-            <form>
+            <form asp-action="Checkout" method="POST">
                 <input asp-for="Id" type="hidden" />
+                <input id="total" value="@Model.Total_Amount" type="hidden" />
                 <div class="form-group">
                     <label for="received">Receive Money</label>
                     <input id="received" name="receivedMoney" type="number" class="form-control" />
                 </div>
+                <p class="my-2" id="paidback">Paid back: 0</p>
+                <button type="submit" class="btn btn-primary">Complete</button>
             </form>
-            <p>Paid back: 0</p>
         </div>
     </div>
-</div>
 
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", () => { localStorage.setItem("cart", JSON.stringify([])) })
+        document.querySelector("#received").addEventListener("keyup", function (event) {
+            const total = parseInt(document.querySelector("#total").value)
+            const value = parseInt(this.value)
+
+            if (value > total) {
+                document.querySelector("#paidback").textContent = `Paid back: ${(value - total)}`
+            } else {
+                document.querySelector("#paidback").textContent = `Paid back: 0`
+            }
+        })
+    </script>
+}

@@ -11,20 +11,22 @@ namespace Point_Of_Sales.Helpers
             _configuration = configuration;
         }
 
-        public void SendEmail(string to, string subject, string content)
+        public async void SendEmail(string to, string subject, string content)
         {
             var host = _configuration["MailSettings:Server"];
             var username = _configuration["MailSettings:Username"];
             var pwd = _configuration["MailSettings:Password"];
             var senderName = _configuration["MailSettings:MailSender"];
 
+            var credential = new NetworkCredential(username, pwd);
+
             var smtp = new SmtpClient()
             {
                 Host = host,
                 Port = 587,
                 EnableSsl = true,
-                UseDefaultCredentials = true,
-                Credentials = new NetworkCredential(username, pwd),
+                UseDefaultCredentials = false,
+                Credentials = credential,
                 DeliveryMethod = SmtpDeliveryMethod.Network
             };
 
@@ -32,11 +34,12 @@ namespace Point_Of_Sales.Helpers
             {
                 From = new MailAddress(username, senderName),
                 Subject = subject,
-                Body = content
+                Body = content,
+                IsBodyHtml = true
             };
 
             message.To.Add(to);
-            smtp.Send(message);
+            await smtp.SendMailAsync(message);
         }
     }
 }

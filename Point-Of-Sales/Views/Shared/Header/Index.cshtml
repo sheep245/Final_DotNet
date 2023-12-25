@@ -1,5 +1,6 @@
 ﻿@{
     var Name = User.Identity.Name ?? "N/A";
+    var Id = User.FindFirst("Id")?.Value ?? "null";
     var IsAdmin = User.IsInRole("Admin");
 }
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,7 +19,7 @@
                 <a class="nav-link" href="/">Sales</a>
             </li>
             <li class="nav-item">
-                <a asp-controller="Purchases" class="nav-link">Purchases</a>
+                <a asp-controller="Purchases" asp-action="Index" class="nav-link">Purchases</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -38,8 +39,8 @@
                     @Name
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item">Profile</a>
-                    <a class="dropdown-item">Change Password</a>
+                    <a asp-action="Profile" asp-controller="Accounts" asp-route-id="@Id" class="dropdown-item">Profile</a>
+                    <a asp-action="ChangePassword" asp-controller="Accounts" asp-route-id="@Id" class="dropdown-item">Change Password</a>
                     <a class="dropdown-item" href="/Auth/Logout">Logout</a>
                 </div>
             </li>
@@ -47,30 +48,6 @@
     </div>
     <div class="form-inline">
         <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button onclick="handleSearch()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </div>
 </nav>
-
-@section Scripts{
-    <script>
-        await function handleSearch() {
-            const value = document.querySelector("#searchInput").ariaValueMax
-
-            if (value) {
-                return;
-            }
-
-            await fetch("/products/search?q=" + value, {
-                method: "GET"
-            }).then(async (res) => {
-                const data = await res.json();
-
-                console.log(data.products)
-
-            }).catch(err => {
-                console.log(err)
-            })
-
-        }
-    </script>
-}

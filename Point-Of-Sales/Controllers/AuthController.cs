@@ -20,13 +20,13 @@ namespace Point_Of_Sales.Controllers
             ViewBag.Message = TempData["Message"];
             return View("Login");
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Index([FromForm] string username, [FromForm] string password)
         {
             if (User.Identity.IsAuthenticated)
             {
-               return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
             }
 
             var _account = _context.Accounts.FirstOrDefault(a => a.Username.Equals(username) && a.Pwd.Equals(password));
@@ -37,15 +37,24 @@ namespace Point_Of_Sales.Controllers
                 return RedirectToAction("Index");
             }
 
+            if (!_account.Employee.Status)
+            {
+                TempData["Message"] = "You must log in by the link sent via your Email.";
+                return RedirectToAction("Index");
+            }
+
             var claims = new List<Claim>() {
                 new Claim(ClaimTypes.Role, _account.Role),
             };
+
+
 
             if (_account.Employee != null)
             {
                 claims.Add(new Claim(ClaimTypes.Name, _account.Employee.Fullname));
                 claims.Add(new Claim(ClaimTypes.Email, _account.Employee.Email));
             }
+            claims.Add(new Claim("Id", _account.Id.ToString()));
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
@@ -63,25 +72,27 @@ namespace Point_Of_Sales.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Index");   
+            return RedirectToAction("Index");
         }
-    
-        public async Task<IActionResult> Verify([FromQuery]string username, [FromQuery]string token, [FromQuery]string expire)
+
+        public async Task<IActionResult> Verify([FromQuery] string username, [FromQuery] string token, [FromQuery] string expire)
         {
             var account = _context.Accounts.FirstOrDefault(a => a.Username.Equals(username));
 
-            if (account == null) { 
+            if (account == null)
+            {
                 // return fail
                 return NotFound();
             }
 
-            // validate time
+            if (Helpers.HelperConfirm.VerifyLink(username, token, expire))
+            {
+                account.Employee.Status = true;
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
 
-            // if valid update database
-
-            // else return verify false
-
-            return View();
+            return Content("Verify ko thanh cong vui long lien he CT de biet them chi tiet");
         }
     }
 }
