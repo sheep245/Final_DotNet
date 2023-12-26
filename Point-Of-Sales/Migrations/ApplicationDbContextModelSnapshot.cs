@@ -18,6 +18,9 @@ namespace Point_Of_Sales.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.14")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -32,6 +35,9 @@ namespace Point_Of_Sales.Migrations
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsFirstLogin")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Pwd")
                         .IsRequired()
@@ -89,15 +95,15 @@ namespace Point_Of_Sales.Migrations
                     b.Property<int>("AccountId")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("Avatar")
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Fullname")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RetailStoreId")
@@ -163,6 +169,9 @@ namespace Point_Of_Sales.Migrations
                     b.Property<DateTime>("Creation_Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("Import_Price")
                         .HasColumnType("float");
 
@@ -172,6 +181,9 @@ namespace Point_Of_Sales.Migrations
                     b.Property<string>("Product_Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.Property<double>("Retail_Price")
                         .HasColumnType("float");

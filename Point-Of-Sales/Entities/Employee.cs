@@ -12,7 +12,8 @@ namespace Point_Of_Sales.Entities
 
         public required string Fullname { get; set; }
         public required string Email { get; set; }
-        public byte[]? Avatar { get; set; }
+        // public string Avatar { get; set; } = null;
+        public string? ImagePath { get; set; } = null;
 
         [ForeignKey("RetailStore")]
         public int RetailStoreId { get; set; }  

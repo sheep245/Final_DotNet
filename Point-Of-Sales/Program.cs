@@ -25,7 +25,7 @@ namespace Point_Of_Sales
                 opt.LogoutPath = "/Auth/Logout";
                 opt.ExpireTimeSpan = TimeSpan.FromHours(1);
                 opt.SlidingExpiration = true;
-  
+                opt.AccessDeniedPath = "/RetailStores";
             });
 
             builder.Services.AddAuthorization();

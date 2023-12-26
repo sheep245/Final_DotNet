@@ -16,6 +16,7 @@ namespace Point_Of_Sales.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "Admin, Employee")]
         public IActionResult Index()
         {
             var products = _context.Products.ToList();

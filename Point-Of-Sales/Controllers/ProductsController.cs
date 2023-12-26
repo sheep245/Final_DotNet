@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Point_Of_Sales.Config;
 using Point_Of_Sales.Entities;
 using Point_Of_Sales.Helpers;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Point_Of_Sales.Controllers
 {
@@ -30,7 +31,7 @@ namespace Point_Of_Sales.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Search([FromQuery]string q)
+        public async Task<IActionResult> Search([FromQuery] string q)
         {
             var products = await _context.Products.Where(p => p.Barcode.Equals(q) || p.Product_Name.Contains(q)).ToListAsync();
             return Ok(new { code = 0, products = products });
@@ -57,29 +58,62 @@ namespace Point_Of_Sales.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
+            ViewBag.Stores = _context.RetailStores.ToList();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date")] Product product, IFormFile file)
+        public async Task<IActionResult> Create([Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date")] Product product,[FromForm] int storeId ,IFormFile image)
         {
-            //if (ModelState.IsValid)
-            //{
-                product.Is_Deleted = true;
-                product.Creation_Date = DateTime.Now;
+            var existProduct = _context.Products.FirstOrDefault(p => p.Barcode.Equals(product.Barcode));
+            var store = await _context.RetailStores.FirstOrDefaultAsync(rt => rt.Id == storeId);
 
-                if (file != null)
+            if (existProduct != null)
+            {
+                existProduct.Quantity = existProduct.Quantity + product.Quantity;
+                var inventory = await _context.Inventories.FirstOrDefaultAsync(i => i.ProductId == existProduct.Id && storeId == i.RetailStoreId);
+
+                if(inventory != null)
                 {
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images", "products", $"product-{product.Id}");
-                    FileProcess.FileUpload(file, filePath);
+                    inventory.Number = product.Quantity;
+                }
+                else
+                {
+                    _context.Inventories.Add(new Inventory()
+                    {
+                        Product = existProduct,
+                        RetailStore = store,
+                        Number = product.Quantity
+                    });
                 }
 
-                _context.Add(product);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            // }
-            return View(product);
+                return RedirectToAction("Index");
+            }
+
+            product.Is_Deleted = true;
+            product.Creation_Date = DateTime.Now;
+
+            if (image != null)
+            {
+                var fileName = $"product-{product.Id}.png";
+                var stringPath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images", "products", fileName);
+
+                FileProcess.FileUpload(image, stringPath);
+                product.ImagePath = $"/images/products/{fileName}";
+            }
+
+            _context.Inventories.Add(new Inventory()
+            {
+                Product = existProduct,
+                RetailStore = store,
+                Number = product.Quantity
+            });
+
+            _context.Add(product);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Products/Edit/5
@@ -100,41 +134,43 @@ namespace Point_Of_Sales.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date,Is_Deleted")] Product product, IFormFile file)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date,Is_Deleted")] Product product,[FromForm] int storeId, IFormFile image)
         {
             if (id != product.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    if (file != null)
-                    {
-                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images", "products", $"product-{product.Id}");
-                        FileProcess.FileUpload(file, filePath);
-                    }
+                // var store = await _context.RetailStores.FirstOrDefaultAsync(rt => rt.Id == storeId);
 
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
+                if (image != null)
+                {
+                    var fileName = $"product-{product.Id}.png";
+                    var stringPath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images", "products", fileName);
+
+                    FileProcess.FileUpload(image, stringPath);
+                    product.ImagePath = $"/images/products/{fileName}";
                 }
 
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(product);
+                await _context.SaveChangesAsync();
             }
-            return View(product);
+
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductExists(product.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+           
+            return RedirectToAction("Details", new { id = id });
         }
 
         // GET: Products/Delete/5

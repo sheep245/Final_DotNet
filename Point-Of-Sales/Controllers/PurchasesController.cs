@@ -22,16 +22,33 @@ namespace Point_Of_Sales.Controllers
         }
 
         // GET: Purchases
-        public async Task<IActionResult> Index([FromQuery]string q)
+        public async Task<IActionResult> Index([FromQuery] string q)
         {
-            if(q != null)
+            if (q != null)
             {
                 var customerPurchases = await _context.PurchaseHistories.Where(p => p.Customer.Phone.Equals(q)).ToListAsync();
                 return View(customerPurchases);
             }
 
-            var purchases = await _context.PurchaseHistories.ToListAsync();
-            return View(purchases);
+            var id = User.FindFirst("Id")?.Value;
+            if (id == null) return NotFound();
+
+            var orders = new List<Purchase>();
+
+            var retailId = _context.Accounts.FirstOrDefault(p => p.Id == Convert.ToInt32(id))?.Employee?.RetailStoreId;
+
+            if (retailId != null)
+            {
+                orders = _context.PurchaseHistories.Where(or => or.Employee.RetailStoreId == retailId && or.Received_Money > 0).ToList();
+            }
+
+            if (User.IsInRole("Head"))
+            {
+                orders = _context.PurchaseHistories.ToList();
+
+            }
+
+            return View(orders);
         }
 
         // GET: Purchases/Details/5
@@ -87,7 +104,7 @@ namespace Point_Of_Sales.Controllers
 
             if (employee == null)
             {
-                return Ok( new { Code = 1, Message = "Khong tim thay thang nhan vien nay" });
+                return Ok(new { Code = 1, Message = "Khong tim thay thang nhan vien nay" });
             }
 
             var purchase = new Purchase()
@@ -102,6 +119,11 @@ namespace Point_Of_Sales.Controllers
             {
                 var product = _context.Products.FirstOrDefault(p => p.Id == detail.Id);
 
+                if (product != null && product.Is_Deleted)
+                {
+                    product.Is_Deleted = false;
+                }
+
                 var pdetail = new PurchaseDetail()
                 {
                     Purchase = purchase,
@@ -109,6 +131,13 @@ namespace Point_Of_Sales.Controllers
                     Subtotal = detail.Subtotal,
                     Quantity = detail.Quantity,
                 };
+                // head
+                product.Quantity = product.Quantity - detail.Quantity;
+
+                // inventory
+                // var inventory = _context.Inventories.FirstOrDefault(p => p.ProductId == detail.Id);
+                // inventory.Number = inventory.Number - detail.Quantity;
+
                 purchase.Total_Amount += (double)detail.Subtotal;
                 _context.PurchaseDetails.Add(pdetail);
                 purchase.PurchaseDetails.Add(pdetail);
@@ -141,7 +170,7 @@ namespace Point_Of_Sales.Controllers
             purchase.Paid_Back = receivedMoney - purchase.Total_Amount;
 
             await _context.SaveChangesAsync();
-            return RedirectToAction("Details", new {id = id});
+            return RedirectToAction("Details", new { id = id });
         }
 
         // GET: Purchases/Delete/5

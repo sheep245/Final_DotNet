@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -22,9 +23,9 @@ namespace Point_Of_Sales.Controllers
         // GET: RetailStores
         public async Task<IActionResult> Index()
         {
-              return _context.RetailStores != null ? 
-                          View(await _context.RetailStores.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.RetailStores'  is null.");
+            return _context.RetailStores != null ?
+                        View(await _context.RetailStores.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.RetailStores'  is null.");
         }
 
         // GET: RetailStores/Details/5
@@ -43,6 +44,51 @@ namespace Point_Of_Sales.Controllers
             }
 
             return View(retailStore);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Report([FromQuery]int q)
+        {
+            var id = User.FindFirst("Id")?.Value;
+            if (id == null) return NotFound();
+
+            var orders = new List<Purchase>();
+            
+            if (q != 0)
+            {
+                orders = _context.PurchaseHistories.Where(or => or.Employee.RetailStoreId == q && or.Received_Money > 0).ToList();
+            }
+            else
+            {
+                var retailId = _context.Accounts.FirstOrDefault(p => p.Id == Convert.ToInt32(id))?.Employee?.RetailStoreId;
+                
+                if(retailId != null)
+                {
+                    orders = _context.PurchaseHistories.Where(or => or.Employee.RetailStoreId == retailId && or.Received_Money > 0).ToList();
+                }
+
+                if (User.IsInRole("Head"))
+                {
+                    orders = _context.PurchaseHistories.ToList();
+
+                }
+            }
+
+            ViewBag.TotalOrder = orders.Count;
+
+            var totalAmount = orders.Sum(or => or.Total_Amount);
+            double cost = 0;
+
+            foreach (var or in orders)
+            {
+                cost += or.PurchaseDetails.Sum(p => p.Product.Import_Price * p.Quantity);
+            }
+
+            ViewBag.Orders = orders ?? new List<Purchase>();
+            ViewBag.TotalAmount = totalAmount;
+            ViewBag.Profit = totalAmount - cost;
+
+            return View();
         }
 
         // GET: RetailStores/Create
@@ -150,14 +196,14 @@ namespace Point_Of_Sales.Controllers
             {
                 _context.RetailStores.Remove(retailStore);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool RetailStoreExists(int id)
         {
-          return (_context.RetailStores?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.RetailStores?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

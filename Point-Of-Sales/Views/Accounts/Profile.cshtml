@@ -6,44 +6,53 @@
 
 <div class="container d-flex justify-content-center mt-5">
     <div class="card row flex-row" style="width: 600px">
-        <div class="col-md-6 d-flex align-items-center">
+        <div class="col-md-6 d-flex flex-column justify-content-evenly align-items-center">
             <label for="avatar" style="width:300px; height: 300px">
-                <img src="~/images/avatar.png" style="width:100%;height:100%; object-fit:contain" id="preview-avatar" />
+
+                @if (Model.Employee.ImagePath != null)
+                {
+                    <img src="@Model.Employee.ImagePath" style="width:100%;height:100%; object-fit:contain" id="preview-avatar" />
+                }
+                else
+                {
+                    <img src="~/images/avatar.png" style="width:100%;height:100%; object-fit:contain" id="preview-avatar" />
+                }
+
             </label>
-        </div>
-        <div class="col-md-6">
-            <h4 class="text-center py-1" style="color: darkslateblue">@Model.Employee.Fullname</h4>
-            <form asp-action="Edit" method="post" class="w-100 mx-0">
+            <form asp-action="Profile" enctype="multipart/form-data" method="post" class="w-100 mx-0 d-flex justify-content-center">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 <input type="file" name="image" hidden id="avatar" />
-                <div class="form-group">
-                    <label class="control-label">Full Name</label>
-                    <input name="FullName" value="@Model.Employee.Fullname" class="form-control" />
-
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Email</label>
-                    <input name="Email" value="@Model.Employee.Email" class="form-control" />
-
-                </div>
-                <div class="form-group">
-                    <label asp-for="Role" class="control-label">Role</label>
-                    <input asp-for="Role" class="form-control" />
-                    <span asp-validation-for="Role" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label for="Store" class="control-label">Store</label>
-                    <input name="Store" value="@Model.Employee.RetailStore.Name" class="form-control" />
-                </div>
-
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>
             </form>
+        </div>
+        <div class="col-md-6">
+            <h4 class="text-center py-1" style="color: darkslateblue">@Model.Employee.Fullname</h4>
+            <div class="form-group">
+                <label class="control-label">Full Name</label>
+                <input name="FullName" value="@Model.Employee.Fullname" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input name="Email" value="@Model.Employee.Email" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Role" class="control-label">Role</label>
+                <input asp-for="Role" class="form-control" />
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Store" class="control-label">Store</label>
+                <input name="Store" value="@Model.Employee.RetailStore.Name" class="form-control" />
+            </div>
+
         </div>
     </div>
 </div>
-@section Scripts{
+@section Scripts {
     <script>
-
 
         const avatar = document.querySelector("#avatar")
         avatar.addEventListener("change", (event) => {

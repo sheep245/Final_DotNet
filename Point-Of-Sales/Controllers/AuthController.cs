@@ -47,8 +47,6 @@ namespace Point_Of_Sales.Controllers
                 new Claim(ClaimTypes.Role, _account.Role),
             };
 
-
-
             if (_account.Employee != null)
             {
                 claims.Add(new Claim(ClaimTypes.Name, _account.Employee.Fullname));
@@ -65,6 +63,16 @@ namespace Point_Of_Sales.Controllers
             };
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), authProperties);
+
+            if (_account.IsFirstLogin)
+            {
+                return RedirectToAction("ChangePassword", "Accounts", new { id = _account.Id });
+            }
+
+            if (_account.Role.Equals("Head"))
+            {
+                return RedirectToAction("Index", "RetailStores");
+            }
 
             return RedirectToAction("Index", "Home");
         }

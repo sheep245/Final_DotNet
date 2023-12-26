@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "POS | Create";
+    var IsAdmin = User.IsInRole("Admin");
 }
 
 <h1>Create</h1>
@@ -30,12 +31,17 @@
             <div class="form-group">
                 <label for="email" class="control-label">Email: *</label>
                 <input type="email" id="email" name="Email" class="form-control" required />
+                <span class="text-danger">@ViewBag.Message</span>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" />
+                @if(IsAdmin){
+                    <input asp-for="Role" readonly class="form-control" value="Employee" />
+                }else{
+                    <input asp-for="Role" readonly class="form-control" value="Admin" />
+                }
                 <span asp-validation-for="Role" class="text-danger"></span>
             </div>
         </div>

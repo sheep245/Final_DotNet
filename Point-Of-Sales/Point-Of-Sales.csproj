@@ -30,4 +30,9 @@
     <PackageReference Include="MimeKit" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\products\" />
+    <Folder Include="wwwroot\images\user\" />
+  </ItemGroup>
+
 </Project>

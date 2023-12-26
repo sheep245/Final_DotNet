@@ -2,6 +2,7 @@
     var Name = User.Identity.Name ?? "N/A";
     var Id = User.FindFirst("Id")?.Value ?? "null";
     var IsAdmin = User.IsInRole("Admin");
+    var IsHead = User.IsInRole("Head");
 }
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand"></a>
@@ -15,25 +16,46 @@
                     <img src="/images/logo.png" width="20px" />
                 </a>
             </li>
+
+            @if (!IsHead)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Sales</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Products" asp-action="Index" class="nav-link">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Purchases" asp-action="Index" class="nav-link">Purchases</a>
+                </li>
+            }
+
+            @if (IsAdmin || IsHead)
+            {
+                <li class="nav-item">
+                    <a asp-controller="Accounts" asp-action="Index" class="nav-link">Accounts</a>
+                </li>
+            }
+
             <li class="nav-item">
-                <a class="nav-link" href="/">Sales</a>
+                <a asp-controller="RetailStores" asp-action="Report" class="nav-link">Report</a>
             </li>
-            <li class="nav-item">
-                <a asp-controller="Purchases" asp-action="Index" class="nav-link">Purchases</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Management
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a asp-controller="Products" asp-action="Index" class="dropdown-item">Products</a>
-                    @if (IsAdmin)
-                    {
+            @if (IsHead)
+            {
+                <li class="nav-item">
+                    <a asp-controller="RetailStores" asp-action="Index" class="nav-link">Retail Stores</a>
+                </li>
+
+               @*  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Management
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a asp-controller="Accounts" asp-action="Index" class="dropdown-item">Accounts</a>
-                        <a asp-controller="RetailStores" asp-action="Index" class="dropdown-item">Retail Stores</a>
-                    }
-                </div>
-            </li>
+                    </div>
+                </li> *@
+            }
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     @Name

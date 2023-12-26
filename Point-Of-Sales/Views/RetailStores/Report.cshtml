@@ -1,0 +1,84 @@
+﻿<div class="container">
+    <div class="row mt-3 justify-content-around">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Number of orders</h5>
+                <p class="card-text">@(ViewBag.TotalOrder ?? 0)</p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Revenue</h5>
+                <p class="card-text">$ @(ViewBag.TotalAmount ?? 0)</p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Profit</h5>
+                <p class="card-text">$ @(ViewBag.Profit ?? 0)</p>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        OrderId
+                    </th>
+                    <th>
+                        Customer
+                    </th>
+                    <th>
+                        Employee
+                    </th>
+                    <th>
+                        Total_Amount
+                    </th>
+                    <th>
+                        Received_Money
+                    </th>
+                    <th>
+                        Paid_Back
+                    </th>
+                    <th>
+                        Date_Of_Purchase
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in ViewBag.Orders)
+                {
+                    <tr>
+                        <td>
+                           @item.purchaseId
+                        </td>
+                        <td>
+                            @item.Customer.Name
+                        </td>
+                        <td>
+                            @item.Employee.Fullname
+                        </td>
+                        <td>
+                            @item.Total_Amount
+                        </td>
+                        <td>
+                            @item.Received_Money
+                        </td>
+                        <td>
+                            @item.Paid_Back
+                        </td>
+                        <td>
+                            @item.Date_Of_Purchase.ToString("dd-MM-yyyy")
+                        </td>
+                        <td>
+                            <a asp-controller="Purchases" asp-action="Details" asp-route-id="@item.purchaseId">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

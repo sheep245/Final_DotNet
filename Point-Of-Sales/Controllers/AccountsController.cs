@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -27,8 +28,24 @@ namespace Point_Of_Sales.Controllers
         // GET: Accounts
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Accounts.ToList();
-            return View(applicationDbContext);
+            var id = User.FindFirst("Id")?.Value;
+            if (id == null) return NotFound();
+
+            var accounts = new List<Account>();
+
+            var retailId = _context.Accounts.FirstOrDefault(p => p.Id == System.Convert.ToInt32(id))?.Employee?.RetailStoreId;
+
+            if (retailId != null)
+            {
+                accounts = _context.Accounts.Where(ac => ac.Employee.RetailStoreId == retailId && ! ac.Username.Equals("admin")).ToList();
+            }
+
+            if (User.IsInRole("Head"))
+            {
+                accounts = _context.Accounts.Where(ac => ac.Role.Equals("Admin")).ToList();
+            }
+
+            return View(accounts);
         }
 
         // GET: Accounts/Details/5
@@ -78,6 +95,7 @@ namespace Point_Of_Sales.Controllers
         {
             // ViewData["Stores"] = new SelectList(_context.RetailStores, "Id", "Name");
             ViewBag.Stores = _context.RetailStores.ToList();
+            ViewBag.Message = TempData["Message"] ?? null;
             return View();
         }
 
@@ -85,10 +103,19 @@ namespace Point_Of_Sales.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(AccountModel account)
         {
+            ViewBag.Stores = _context.RetailStores.ToList();
             if (ModelState.IsValid)
             {
                 var username = account.Email.Split("@")[0].Trim();
                 var pwd = username;
+
+                var exist = _context.Employees.FirstOrDefault(e => e.Email.Equals(account.Email));
+
+                if (exist != null)
+                {
+                    TempData["Message"] = "Da ton ton tai";
+                    return RedirectToAction("Create");
+                }
 
                 var store = _context.RetailStores.FirstOrDefault(s => s.Id == account.RetailStoreId);
 
@@ -127,7 +154,6 @@ namespace Point_Of_Sales.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Stores = _context.RetailStores.ToList();
             return View(account);
         }
 
@@ -196,8 +222,28 @@ namespace Point_Of_Sales.Controllers
             var profile = (await _context.Accounts.FindAsync(id));
 
             if (profile == null) return NotFound();
-            
+
             return View(profile);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Profile(int id, IFormFile image)
+        {
+            var profile = (await _context.Accounts.FindAsync(id));
+
+            if (profile == null) return NotFound();
+
+            if (image != null)
+            {
+                var fileName = $"profile-{profile.Id}.png";
+                var stringPath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images", "user", fileName);
+
+                FileProcess.FileUpload(image, stringPath);
+                profile.Employee.ImagePath = $"/images/user/{fileName}";
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Profile", new { id = id });
         }
 
         [HttpPost]
@@ -217,6 +263,11 @@ namespace Point_Of_Sales.Controllers
             {
                 TempData["Message"] = "Confirm new password is not correct.";
                 return RedirectToAction("ChangePassword", new { id = id });
+            }
+
+            if (account.IsFirstLogin)
+            {
+                account.IsFirstLogin = false;
             }
 
             account.Pwd = NewPwd;
@@ -274,11 +325,11 @@ namespace Point_Of_Sales.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Search([FromQuery]string q)
+        public async Task<IActionResult> Search([FromQuery] string q)
         {
             var customer = _context.Customers.FirstOrDefault(c => c.Phone.Equals(q));
             if (customer == null) return Ok();
-            return Ok(new {phone = customer.Phone, name = customer.Name, address = customer.Address});
+            return Ok(new { phone = customer.Phone, name = customer.Name, address = customer.Address });
         }
 
         private bool AccountExists(int id)

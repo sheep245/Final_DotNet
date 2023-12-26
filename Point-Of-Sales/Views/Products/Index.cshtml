@@ -8,9 +8,12 @@
 <div class="container">
     <h1>List Products</h1>
 
-    <p>
-        <a asp-action="Create" class="btn btn-primary">Create New</a>
-    </p>
+    @if (IsAdmin)
+    {
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Create New</a>
+        </p>
+    }
     <table class="table">
         <thead>
             <tr class="text-center">
@@ -58,7 +61,6 @@
                         @Html.DisplayFor(modelItem => item.Category)
                     </td>
                     <td>
-                        @*<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary mr-2">Edit</a>*@
                         <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary mr-2">Details</a>
 
                         @if (IsAdmin)

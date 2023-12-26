@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Point_Of_Sales.Entities
 {
@@ -20,6 +21,7 @@ namespace Point_Of_Sales.Entities
         public double Paid_Back { get; set; }
         public DateTime Date_Of_Purchase { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<PurchaseDetail> PurchaseDetails { get; set; }
     }
 }
