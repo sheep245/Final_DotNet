@@ -17,7 +17,7 @@ namespace Point_Of_Sales.Entities
 
         [ForeignKey("RetailStore")]
         public int RetailStoreId { get; set; }  
-        public virtual required RetailStore RetailStore { get; set; }
+        public virtual RetailStore RetailStore { get; set; }
 
         public bool Status { get; set; }
 

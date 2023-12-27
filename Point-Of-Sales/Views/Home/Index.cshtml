@@ -113,15 +113,6 @@
             })
         }
 
-        /*const enableCheckOut = async function (table) {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            if (cart.length == 0) {
-                document.querySelector("#checkout").classList.add("disabled")
-            } else {
-                document.querySelector("#checkout").classList.remove("disabled")
-            }
-        }*/
-
         document.querySelector("#searchBtn").addEventListener("click", async function () {
             const value = document.querySelector("#searchInput").value
 
@@ -214,6 +205,11 @@
 
             if (!phone || !name || !address) {
                 alert("Customer information must be filled in completely.")
+                return;
+            }
+
+            if(cart.length == 0) {
+                alert("No data in cart! Please choose at least one item.");
                 return;
             }
 

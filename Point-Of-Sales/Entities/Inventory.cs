@@ -10,7 +10,7 @@ namespace Point_Of_Sales.Entities
         [ForeignKey("Product")]
         public int ProductId { get; set; }
         public virtual required Product? Product { get; set; }
-        public int Number { get; set; }
+        public int Number { get; set; } = 0;
 
         [ForeignKey("RetailStore")]
         public int RetailStoreId { get; set; }

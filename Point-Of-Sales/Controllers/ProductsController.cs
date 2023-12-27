@@ -25,9 +25,18 @@ namespace Point_Of_Sales.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return _context.Products != null ?
-                        View(await _context.Products.ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.Products'  is null.");
+            var id = User.FindFirst("Id")?.Value;
+            var listProducts = new List<Product>(); 
+            if (id != null)
+            {
+                var retailId = _context.Accounts.FirstOrDefault(p => p.Id == System.Convert.ToInt32(id))?.Employee?.RetailStoreId;
+                if (retailId != null)
+                {
+                    listProducts = _context.Products.Where(p => p.Inventories.Any(inv => inv.RetailStoreId == retailId)).ToList();
+                }
+            }
+
+            return View(listProducts);     
         }
 
         [HttpGet]
@@ -58,6 +67,17 @@ namespace Point_Of_Sales.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
+            var id = User.FindFirst("Id")?.Value;
+            if (id != null)
+            {
+                var retailId = _context.Accounts.FirstOrDefault(p => p.Id == System.Convert.ToInt32(id))?.Employee?.RetailStoreId;
+                if (retailId != null)
+                {
+                    var retail = _context.RetailStores.FirstOrDefault(rt => rt.Id == retailId);
+                    ViewBag.Retail = retail;
+                }
+            }
+
             ViewBag.Stores = _context.RetailStores.ToList();
             return View();
         }
@@ -66,32 +86,6 @@ namespace Point_Of_Sales.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date")] Product product, [FromForm] int storeId, IFormFile image)
         {
-            /*var existProduct = _context.Products.FirstOrDefault(p => p.Barcode.Equals(product.Barcode));
-            var store = await _context.RetailStores.FirstOrDefaultAsync(rt => rt.Id == storeId);
-
-            if (existProduct != null)
-            {
-                existProduct.Quantity = existProduct.Quantity + product.Quantity;
-                var inventory = await _context.Inventories.FirstOrDefaultAsync(i => i.ProductId == existProduct.Id && storeId == i.RetailStoreId);
-
-                if (inventory != null)
-                {
-                    inventory.Number = product.Quantity;
-                }
-                else
-                {
-                    _context.Inventories.Add(new Inventory()
-                    {
-                        Product = existProduct,
-                        RetailStore = store,
-                        Number = product.Quantity
-                    });
-                }
-
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }*/
-
             product.Is_Deleted = true;
             product.Creation_Date = DateTime.Now;
 
@@ -104,12 +98,18 @@ namespace Point_Of_Sales.Controllers
                 product.ImagePath = $"/images/products/{fileName}";
             }
 
-            /*_context.Inventories.Add(new Inventory()
+            var retail = _context.RetailStores.FirstOrDefault(p => p.Id == storeId);
+
+            var inventoryExist = _context.Inventories.FirstOrDefault(inv => inv.RetailStoreId == retail.Id && inv.Product.Barcode.Equals(product.Barcode));
+
+            if (inventoryExist != null)
             {
-                Product = existProduct,
-                RetailStore = store,
-                Number = product.Quantity
-            });*/
+                inventoryExist.Number = inventoryExist.Number + product.Quantity;
+            }
+            else
+            {
+                _context.Inventories.Add(new Inventory() {InventoryID = retail.RetailStoreID, Product = product, RetailStore = retail, Number = product.Quantity });
+            }
 
             _context.Add(product);
             await _context.SaveChangesAsync();

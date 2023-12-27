@@ -93,7 +93,16 @@ namespace Point_Of_Sales.Controllers
         // GET: Accounts/Create
         public IActionResult Create()
         {
-            // ViewData["Stores"] = new SelectList(_context.RetailStores, "Id", "Name");
+            var id = User.FindFirst("Id")?.Value;
+            if (id != null)
+            {
+                var retailId = _context.Accounts.FirstOrDefault(p => p.Id == System.Convert.ToInt32(id))?.Employee?.RetailStoreId;
+                if (retailId != null)
+                {
+                    var retail = _context.RetailStores.FirstOrDefault(rt => rt.Id == retailId);
+                    ViewBag.Retail = retail;
+                }
+            }
 
             ViewBag.Stores = _context.RetailStores.ToList();
             ViewBag.Message = TempData["Message"] ?? null;

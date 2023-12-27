@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zzAOgHV5/fnatpdJEePHzegLI4iJqysi3rN3Cv/Mw/g=",
+  "Hash": "L6TMNMjOs0QMacDdFLUKmymHEJElDGiDSGXEGnYsJ6k=",
   "Source": "Point-Of-Sales",
   "BasePath": "_content/Point-Of-Sales",
   "Mode": "Default",
@@ -566,6 +566,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\product-17.png"
+    },
+    {
+      "Identity": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\products\\product-20.png",
+      "SourceId": "Point-Of-Sales",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\",
+      "BasePath": "_content/Point-Of-Sales",
+      "RelativePath": "images/products/product-20.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\product-20.png"
     },
     {
       "Identity": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\products\\product-3.png",

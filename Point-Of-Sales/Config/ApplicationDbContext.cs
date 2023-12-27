@@ -35,17 +35,18 @@ namespace Point_Of_Sales.Config
             //{
             //    Username = "admin",
             //    Pwd = "admin",
-            //    Role = "admin"
+            //    Role = "Head",
             //};
-
-            //account.Employee = new Employee()
+            //var employee = new Employee()
             //{
             //    Account = account,
-            //    Fullname = "admin",
-            //    Email = "admin@gmail.com",
-            //    RetailStore = new RetailStore() { Name = "Store 1" }
+            //    Fullname = "head",
+            //    Email = "head@gmail.com",
+            //    RetailStore = new RetailStore() { Name = "Head 1" }
             //};
 
+            //account.Employee = employee;
+            //builder.Entity<Employee>().HasData(employee);
             //builder.Entity<Account>().HasData(account);
         }
     }

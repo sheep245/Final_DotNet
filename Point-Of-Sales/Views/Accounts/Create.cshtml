@@ -11,32 +11,35 @@
 <div class="container" style="display:flex; justify-content: center; padding-top: 2%">
     <div class="card row flex-row justify-content-around" style="width: 500px">
         <h3 class="text-center" style="color: #69a297">Create new account</h3>
-        <div class="row mt-2">
-            <form asp-action="Create">
-                <div class="col-md-9">
+        <div class="row mt-2 justify-content-center">
+            <form asp-action="Create" class="col-md-9">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="StoreId" class="control-label">Store</label>
                         <select name="RetailStoreId" id="StoreId" class="form-control">
-                            @foreach (var store in ViewBag.Stores)
+                            @foreach (var s in ViewBag.Stores)
                             {
-                                <option value="@store.Id">@store.Name</option>
+                                if (ViewBag.Retail != null && s.Id == ViewBag.Retail.Id)
+                                {
+                                    <option value="@ViewBag.Retail.Id" selected>@s.Name</option>
+                                }
                             }
                         </select>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="fname" class="control-label">Full name: *</label>
                         <input name="Fullname" id="fname" class="form-control" required />
                     </div>
-                </div> <div class="col-md-9">
+                </div> <div class="col-md-12">
                     <div class="form-group">
                         <label for="email" class="control-label">Email: *</label>
                         <input type="email" id="email" name="Email" class="form-control" required />
                         <span class="text-danger">@ViewBag.Message</span>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="Role" class="control-label"></label>
                         @if (IsAdmin)
@@ -52,7 +55,7 @@
                 </div>
 
 
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="form-group">

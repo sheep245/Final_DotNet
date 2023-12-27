@@ -27,7 +27,7 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+                <tr id="data-@item.Id">
                     <td>
                         @Html.DisplayFor(modelItem => item.RetailStoreID)
                     </td>

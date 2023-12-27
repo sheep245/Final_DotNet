@@ -17,6 +17,7 @@ namespace Point_Of_Sales
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("MyDBString"));
+                options.EnableSensitiveDataLogging();
             });
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

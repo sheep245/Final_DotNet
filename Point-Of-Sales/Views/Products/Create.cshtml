@@ -54,7 +54,10 @@
                             <select name="storeId" id="store" class="form-control">
                                 @foreach (var s in ViewBag.Stores)
                                 {
-                                    <option value="@s.Id">@s.Name</option>
+                                    if (ViewBag.Retail != null && s.Id == ViewBag.Retail.Id)
+                                    {
+                                        <option value="@ViewBag.Retail.Id" selected>@s.Name</option>
+                                    }
                                 }
                             </select>
                         </div>
@@ -67,7 +70,7 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <div class ="mt-4">
+                    <div class="mt-4">
                         <button type="submit" value="Create" class="btn text-white w-100" style="background-color:#55828b">Save</button>
                     </div>
                 </div>

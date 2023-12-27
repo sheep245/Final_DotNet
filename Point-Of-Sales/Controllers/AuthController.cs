@@ -64,8 +64,10 @@ namespace Point_Of_Sales.Controllers
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), authProperties);
 
-            if (_account.IsFirstLogin)
+            if (_account.IsFirstLogin == true)
             {
+                _account.IsFirstLogin = false;
+                _context.SaveChanges();
                 return RedirectToAction("ChangePassword", "Accounts", new { id = _account.Id });
             }
 
@@ -89,8 +91,7 @@ namespace Point_Of_Sales.Controllers
 
             if (account == null)
             {
-                // return fail
-                return NotFound();
+                return RedirectToAction("Error", "Home");
             }
 
             if (Helpers.HelperConfirm.VerifyLink(username, token, expire))
@@ -100,7 +101,7 @@ namespace Point_Of_Sales.Controllers
                 return RedirectToAction("Index");
             }
 
-            return Content("Verify ko thanh cong vui long lien he CT de biet them chi tiet");
+            return Content("The login link has expired! Contact the admin to resend it.");
         }
     }
 }

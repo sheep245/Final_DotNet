@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Report";
+    var IsEmployee = User.IsInRole("Employee");
 }
 
 <div class="container">
@@ -16,12 +17,16 @@
                 <h5 class="card-text">$ @(ViewBag.TotalAmount ?? 0)</h5>
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title" style="color:#3c6e71; font-weight:bold">Profit</h5>
-                <h5 class="card-text" ">$ @(ViewBag.Profit ?? 0)</h5>
+
+        @if (!IsEmployee)
+        {
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color:#3c6e71; font-weight:bold">Profit</h5>
+                    <h5 class="card-text">$ @(ViewBag.Profit ?? 0)</h5>
+                </div>
             </div>
-        </div>
+        }
     </div>
     <div class="row mt-4">
         <table class="table">
@@ -52,12 +57,11 @@
                 </tr>
             </thead>
             <tbody>
-
                 @foreach (var item in ViewBag.Orders)
                 {
                     <tr>
                         <td>
-                           @item.purchaseId
+                            @item.purchaseId
                         </td>
                         <td>
                             @item.Customer.Name

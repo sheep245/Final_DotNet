@@ -31,16 +31,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var p in Model.PurchaseDetails)
-                    {
-                        <tr>
-                            <td></td>
-                            <td>@p.Product.Product_Name</td>
-                            <td>@p.Quantity</td>
-                            <td>$@p.Product.Retail_Price</td>
-                            <td>$@p.Subtotal</td>
-                        </tr>
+                    @{
+                        var count = 1;
+                        @foreach (var p in Model.PurchaseDetails)
+                        {
+                            <tr>
+                                <td>@count</td>
+                                <td>@p.Product.Product_Name</td>
+                                <td>@p.Quantity</td>
+                                <td>$@p.Product.Retail_Price</td>
+                                <td>$@p.Subtotal</td>
+                            </tr>
+                            count++;
+                        }
                     }
+                    
                 </tbody>
             </table>
         </div>

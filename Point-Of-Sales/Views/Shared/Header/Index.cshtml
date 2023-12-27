@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     var Name = User.Identity.Name ?? "N/A";
     var Id = User.FindFirst("Id")?.Value ?? "null";
     var IsAdmin = User.IsInRole("Admin");
