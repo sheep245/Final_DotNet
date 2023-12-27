@@ -5,7 +5,7 @@
 }
 
 <div class="container d-flex justify-content-center mt-5">
-    <div class="card row flex-row mt-5" style="width: 600px">
+    <div class="card row flex-row mt-3" style="width: 800px">
         <div class="col-md-6 d-flex flex-column justify-content-evenly align-items-center">
             <label for="avatar" style="width:300px; height: 300px">
 
@@ -30,22 +30,22 @@
             <h4 class="text-center py-1 mt-2" style="color: #005f73; font-weight:bold">@Model.Employee.Fullname</h4>
             <div class="form-group">
                 <label class="control-label">Full Name</label>
-                <input name="FullName" value="@Model.Employee.Fullname" class="form-control" />
+                <input disabled name="FullName" value="@Model.Employee.Fullname" class="form-control" />
 
             </div>
             <div class="form-group">
                 <label class="control-label">Email</label>
-                <input name="Email" value="@Model.Employee.Email" class="form-control" />
+                <input disabled name="Email" value="@Model.Employee.Email" class="form-control" />
 
             </div>
             <div class="form-group">
                 <label asp-for="Role" class="control-label">Role</label>
-                <input asp-for="Role" class="form-control" />
+                <input disabled asp-for="Role" class="form-control" />
                 <span asp-validation-for="Role" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label for="Store" class="control-label">Store</label>
-                <input name="Store" value="@Model.Employee.RetailStore.Name" class="form-control" />
+                <input disabled name="Store" value="@Model.Employee.RetailStore.Name" class="form-control" />
             </div>
 
         </div>

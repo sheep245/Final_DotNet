@@ -37,7 +37,7 @@ namespace Point_Of_Sales.Controllers
 
             if (retailId != null)
             {
-                accounts = _context.Accounts.Where(ac => ac.Employee.RetailStoreId == retailId && ! ac.Username.Equals("admin")).ToList();
+                accounts = _context.Accounts.Where(ac => ac.Employee.RetailStoreId == retailId && !ac.Username.Equals("admin")).ToList();
             }
 
             if (User.IsInRole("Head"))
@@ -135,19 +135,24 @@ namespace Point_Of_Sales.Controllers
                     Pwd = pwd,
                     Role = Helpers.Convert.Capitalize(account.Role),
                 };
+                _context.Accounts.Add(newAccount);
+                _context.SaveChanges();
+
 
                 var employee = new Employee()
                 {
+                    AccountId = newAccount.Id,  
                     Account = newAccount,
                     Fullname = account.Fullname,
                     Email = account.Email,
-                    RetailStore = store
+                    RetailStore = store,
                 };
 
-                _context.Employees.Add(employee);
-                _context.Accounts.Add(newAccount);
+                newAccount.Employee = employee;
 
-                var result = await _context.SaveChangesAsync();
+                _context.Employees.Add(employee);
+                var result = _context.SaveChanges();
+
 
                 // Create link verify
                 if (result > 0)

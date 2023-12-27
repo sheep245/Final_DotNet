@@ -33,10 +33,7 @@
                             <select name="RetailStoreId" id="StoreId" class="form-control">
                                 @foreach (var s in ViewBag.Stores)
                                 {
-                                    if (ViewBag.Retail != null)
-                                    {
-                                        <option value="@ViewBag.Retail.Id" selected>@s.Name</option>
-                                    }
+                                    <option value="@s.Id">@s.Name</option>
                                 }
                             </select>
                         }

@@ -30,7 +30,7 @@ namespace Point_Of_Sales.Config
                 .WithOne(e => e.Account)
                 .HasForeignKey<Account>(e => e.EmployeeId)
                 .OnDelete(DeleteBehavior.Cascade);
-
+                
             //var account = new Account()
             //{
             //    Username = "admin",
