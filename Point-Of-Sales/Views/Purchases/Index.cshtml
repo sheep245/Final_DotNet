@@ -5,7 +5,7 @@
 }
 
 <div class="container">
-    <h5 style="color: #50808e" class="mt-2">List of Purchases</h5>
+    <h5 style="color: #50808e" class="mt-2">List of Sold Orders</h5>
     <table class="table mt-4">
         <thead>
             <tr class="text-center">
@@ -60,7 +60,7 @@
                     </td>
                     <td>
                        @*  <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> | *@
-                        <a asp-action="Details" asp-route-id="@item.purchaseId" class="btn text-white" style="background-color: #55828b">Details</a>
+                        <a asp-action="Details" asp-route-id="@item.purchaseId" class="btn text-white" style="background-color: #55828b">Invoice Details</a>
                     </td>
                 </tr>
             }
