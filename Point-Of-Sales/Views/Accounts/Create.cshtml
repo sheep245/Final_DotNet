@@ -1,65 +1,69 @@
 ﻿@model Point_Of_Sales.Models.AccountModel
 
 @{
-    ViewData["Title"] = "POS | Create";
+    ViewData["Title"] = "Create Account";
     var IsAdmin = User.IsInRole("Admin");
 }
 
-<h1>Create</h1>
 
-<h4>Account</h4>
-<hr />
-<div class="row">
-    <form asp-action="Create">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="StoreId" class="control-label">Store</label>
-                <select name="RetailStoreId" id="StoreId" class="form-control">
-                    @foreach (var store in ViewBag.Stores)
-                    {
-                        <option value="@store.Id">@store.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="fname" class="control-label">Full name: *</label>
-                <input name="Fullname" id="fname" class="form-control" required />
-            </div>
-        </div> <div class="col-md-6">
-            <div class="form-group">
-                <label for="email" class="control-label">Email: *</label>
-                <input type="email" id="email" name="Email" class="form-control" required />
-                <span class="text-danger">@ViewBag.Message</span>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                @if(IsAdmin){
-                    <input asp-for="Role" readonly class="form-control" value="Employee" />
-                }else{
-                    <input asp-for="Role" readonly class="form-control" value="Admin" />
-                }
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-        </div>
+<a asp-action="Index" class="btn mt-2 ml-3" style="color: #69a297"><i><u>Back to List</u></i></a>
+
+<div class="container" style="display:flex; justify-content: center; padding-top: 2%">
+    <div class="card row flex-row justify-content-around" style="width: 500px">
+        <h3 class="text-center" style="color: #69a297">Create new account</h3>
+        <div class="row mt-2">
+            <form asp-action="Create">
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label for="StoreId" class="control-label">Store</label>
+                        <select name="RetailStoreId" id="StoreId" class="form-control">
+                            @foreach (var store in ViewBag.Stores)
+                            {
+                                <option value="@store.Id">@store.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label for="fname" class="control-label">Full name: *</label>
+                        <input name="Fullname" id="fname" class="form-control" required />
+                    </div>
+                </div> <div class="col-md-9">
+                    <div class="form-group">
+                        <label for="email" class="control-label">Email: *</label>
+                        <input type="email" id="email" name="Email" class="form-control" required />
+                        <span class="text-danger">@ViewBag.Message</span>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label asp-for="Role" class="control-label"></label>
+                        @if (IsAdmin)
+                        {
+                            <input asp-for="Role" readonly class="form-control" value="Employee" />
+                        }
+                        else
+                        {
+                            <input asp-for="Role" readonly class="form-control" value="Admin" />
+                        }
+                        <span asp-validation-for="Role" class="text-danger"></span>
+                    </div>
+                </div>
 
 
-        <div class="col-md-4">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-md-9">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn text-white w-100 mt-2" style="background-color:#55828b" />
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{

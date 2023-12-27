@@ -1,7 +1,7 @@
 ﻿@model Point_Of_Sales.Entities.Product
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Products Details";
     var IsAdmin = User.IsInRole("Admin");
 }
 
@@ -9,8 +9,8 @@
 <div class="container">
     @*    <h4>Product</h4>
     <hr />*@
-    <a asp-action="Index" class="btn text-primary">Back to List</a>
-    <div class="row">
+    <a asp-action="Index" class="btn" style="color: #69a297"><i><u>Back to List</u></i></a>
+    <div class="row justify-content-center">
         <div class="col-md-5">
             <label for="image">
                 @if (Model.ImagePath != null)
@@ -23,7 +23,7 @@
                 </label>
         </div>
         <div class="col-md-4">
-            <h4 class="text-center py-1">@Model.Product_Name</h4>
+            <h4 class="text-center py-1" style="color:#426148">@Model.Product_Name</h4>
             <form enctype="multipart/form-data" method="post" asp-action="Edit" class="w-100 mx-0">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
@@ -55,7 +55,7 @@
                 </div>
                 @if(IsAdmin){
                     <div class="form-group">
-                        <input type="submit" value="Save Changes" class="btn btn-primary" />
+                        <input type="submit" value="Save Changes" class="btn text-white" style="background-color:#55828b" />
                     </div>
                 }
             </form>

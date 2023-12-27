@@ -94,6 +94,7 @@ namespace Point_Of_Sales.Controllers
         public IActionResult Create()
         {
             // ViewData["Stores"] = new SelectList(_context.RetailStores, "Id", "Name");
+
             ViewBag.Stores = _context.RetailStores.ToList();
             ViewBag.Message = TempData["Message"] ?? null;
             return View();
@@ -113,7 +114,7 @@ namespace Point_Of_Sales.Controllers
 
                 if (exist != null)
                 {
-                    TempData["Message"] = "Da ton ton tai";
+                    TempData["Message"] = "Email already exists in the system.";
                     return RedirectToAction("Create");
                 }
 
@@ -207,7 +208,7 @@ namespace Point_Of_Sales.Controllers
             string subject = "";
             var link = $"{Request.Scheme}://{Request.Host}" + Helpers.HelperConfirm.Generatelink(account.Username);
 
-            string content = $"Welcome to my app. Please click <a href=\"{link}\"> here </a> to active your account.";
+            string content = $"Welcome to my <b>Point-Of-Sales</b> website.<br> Please click <a href=\"{link}\"> here</a> to active your account.";
 
             var mailer = new Mailer(_configuration);
 

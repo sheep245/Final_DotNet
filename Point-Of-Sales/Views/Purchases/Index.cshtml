@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Point_Of_Sales.Entities.Purchase>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Purchases";
 }
 
 <div class="container">
-    <h1>Index</h1>
-    <table class="table">
+    <h5 style="color: #50808e" class="mt-2">List of Purchases</h5>
+    <table class="table mt-4">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th>
                     @Html.DisplayNameFor(model => model.purchaseId)
                 </th>
@@ -60,7 +60,7 @@
                     </td>
                     <td>
                        @*  <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> | *@
-                        <a asp-action="Details" asp-route-id="@item.purchaseId" class="btn btn-success" >Details</a>
+                        <a asp-action="Details" asp-route-id="@item.purchaseId" class="btn text-white" style="background-color: #55828b">Details</a>
                     </td>
                 </tr>
             }

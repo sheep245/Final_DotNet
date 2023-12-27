@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "f4KYNxf82l4dDWConzzYBzsqJJvpv7LkZBRkUBxDlUM=",
+  "Hash": "x9fq1hkWMRKwqEr+Ww6dV/iC1rgJ5ZXm8DpXsH4zoQU=",
   "Source": "Point-Of-Sales",
   "BasePath": "_content/Point-Of-Sales",
   "Mode": "Default",
@@ -473,6 +473,25 @@
       "OriginalItemSpec": "wwwroot\\images\\logo.png"
     },
     {
+      "Identity": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\logo_1.png",
+      "SourceId": "Point-Of-Sales",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\",
+      "BasePath": "_content/Point-Of-Sales",
+      "RelativePath": "images/logo_1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\logo_1.png"
+    },
+    {
       "Identity": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\products\\product-0.png",
       "SourceId": "Point-Of-Sales",
       "SourceType": "Discovered",
@@ -509,6 +528,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\product-3.png"
+    },
+    {
+      "Identity": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\user\\profile-28.png",
+      "SourceId": "Point-Of-Sales",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\",
+      "BasePath": "_content/Point-Of-Sales",
+      "RelativePath": "images/user/profile-28.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\user\\profile-28.png"
     },
     {
       "Identity": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\user\\profile-6.png",

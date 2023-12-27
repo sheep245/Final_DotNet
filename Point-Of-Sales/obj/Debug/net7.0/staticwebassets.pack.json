@@ -93,12 +93,20 @@
       "PackagePath": "staticwebassets\\images\\logo.png"
     },
     {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\logo_1.png",
+      "PackagePath": "staticwebassets\\images\\logo_1.png"
+    },
+    {
       "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\products\\product-0.png",
       "PackagePath": "staticwebassets\\images\\products\\product-0.png"
     },
     {
       "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\products\\product-3.png",
       "PackagePath": "staticwebassets\\images\\products\\product-3.png"
+    },
+    {
+      "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\user\\profile-28.png",
+      "PackagePath": "staticwebassets\\images\\user\\profile-28.png"
     },
     {
       "Id": "D:\\Downloads\\DOTNET - Final Project (23-12-2023)\\Source\\Point-Of-Sales\\wwwroot\\images\\user\\profile-6.png",

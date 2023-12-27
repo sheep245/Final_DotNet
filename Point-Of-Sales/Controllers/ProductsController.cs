@@ -64,9 +64,9 @@ namespace Point_Of_Sales.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date")] Product product,[FromForm] int storeId ,IFormFile image)
+        public async Task<IActionResult> Create([Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date")] Product product, [FromForm] int storeId, IFormFile image)
         {
-            var existProduct = _context.Products.FirstOrDefault(p => p.Barcode.Equals(product.Barcode));
+            /*var existProduct = _context.Products.FirstOrDefault(p => p.Barcode.Equals(product.Barcode));
             var store = await _context.RetailStores.FirstOrDefaultAsync(rt => rt.Id == storeId);
 
             if (existProduct != null)
@@ -74,7 +74,7 @@ namespace Point_Of_Sales.Controllers
                 existProduct.Quantity = existProduct.Quantity + product.Quantity;
                 var inventory = await _context.Inventories.FirstOrDefaultAsync(i => i.ProductId == existProduct.Id && storeId == i.RetailStoreId);
 
-                if(inventory != null)
+                if (inventory != null)
                 {
                     inventory.Number = product.Quantity;
                 }
@@ -90,7 +90,7 @@ namespace Point_Of_Sales.Controllers
 
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
-            }
+            }*/
 
             product.Is_Deleted = true;
             product.Creation_Date = DateTime.Now;
@@ -104,12 +104,12 @@ namespace Point_Of_Sales.Controllers
                 product.ImagePath = $"/images/products/{fileName}";
             }
 
-            _context.Inventories.Add(new Inventory()
+            /*_context.Inventories.Add(new Inventory()
             {
                 Product = existProduct,
                 RetailStore = store,
                 Number = product.Quantity
-            });
+            });*/
 
             _context.Add(product);
             await _context.SaveChangesAsync();
@@ -134,7 +134,7 @@ namespace Point_Of_Sales.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date,Is_Deleted")] Product product,[FromForm] int storeId, IFormFile image)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Barcode,Product_Name,Import_Price,Retail_Price,Category,Creation_Date,Is_Deleted")] Product product, [FromForm] int storeId, IFormFile image)
         {
             if (id != product.Id)
             {
@@ -169,7 +169,7 @@ namespace Point_Of_Sales.Controllers
                     throw;
                 }
             }
-           
+
             return RedirectToAction("Details", new { id = id });
         }
 
@@ -195,6 +195,7 @@ namespace Point_Of_Sales.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+
             if (_context.Products == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Products'  is null.");

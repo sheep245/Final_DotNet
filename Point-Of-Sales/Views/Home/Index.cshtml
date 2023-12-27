@@ -3,8 +3,6 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-@*
-san pham *@
 
 <div class="row py-1 justify-content-center" style="height: calc(100vh - 90px); padding-left: 15px;">
 
@@ -21,7 +19,7 @@ san pham *@
                                 onclick="addToTable(this)"
                                 data-id="@product.Id"
                                 data-price="@product.Retail_Price"
-                                data-name="@product.Product_Name">
+                                data-name="@product.Product_Name" style="background-color:#55828b; border-color: #55828b">
                             Buy
                         </button>
                     </div>
@@ -30,7 +28,7 @@ san pham *@
         }
     </div>
     <div class="col-lg-3">
-        <h5 class="text-center">Selected products</h5>
+        <h5 class="text-center" style="color:#7d4f50; font-weight:bolder">Selected products</h5>
         @*<hr />*@
         <table class="table">
             <thead>
@@ -55,9 +53,9 @@ san pham *@
         </table>
         <hr />
         <div id="footer" class="d-flex justify-content-between align-items-center px-4">
-            <span id="total">Total: 0</span>
+            <span id="total" style="color: #640d14; font-size: 20px; font-weight:bolder">Total: 0</span>
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="border-color: #7d4f50; background-color: #7d4f50">
                 Check out
             </button>
         </div>
@@ -70,7 +68,7 @@ san pham *@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Customer information</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -87,9 +85,9 @@ san pham *@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a target="_blank" class="btn btn-primary text-white disabled" id="history">Purchases history</a>
-                <button onclick="handleCheckout()" type="button" class="btn btn-primary">Checkout</button>
+                <button type="button" class="btn text-white" style="background-color: #8e9aaf" data-bs-dismiss="modal">Close</button>
+                <a target="_blank" class="btn btn-primary text-white disabled" id="history" style="background-color: #3c6e71">Purchases history</a>
+                <button onclick="handleCheckout()" type="button" class="btn text-white" style="background-color:#7d4f50">Checkout</button>
             </div>
         </div>
     </div>

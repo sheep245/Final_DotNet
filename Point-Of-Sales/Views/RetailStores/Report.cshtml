@@ -1,21 +1,25 @@
-﻿<div class="container">
+﻿@{
+    ViewData["Title"] = "Report";
+}
+
+<div class="container">
     <div class="row mt-3 justify-content-around">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Number of orders</h5>
-                <p class="card-text">@(ViewBag.TotalOrder ?? 0)</p>
+                <h5 class="card-title" style="color:#3c6e71; font-weight:bold">Number of orders</h5>
+                <h5 class="card-text">@(ViewBag.TotalOrder ?? 0)</h5>
             </div>
         </div>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Revenue</h5>
-                <p class="card-text">$ @(ViewBag.TotalAmount ?? 0)</p>
+                <h5 class="card-title" style="color:#3c6e71; font-weight:bold">Revenue</h5>
+                <h5 class="card-text">$ @(ViewBag.TotalAmount ?? 0)</h5>
             </div>
         </div>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Profit</h5>
-                <p class="card-text">$ @(ViewBag.Profit ?? 0)</p>
+                <h5 class="card-title" style="color:#3c6e71; font-weight:bold">Profit</h5>
+                <h5 class="card-text" ">$ @(ViewBag.Profit ?? 0)</h5>
             </div>
         </div>
     </div>
@@ -74,7 +78,7 @@
                             @item.Date_Of_Purchase.ToString("dd-MM-yyyy")
                         </td>
                         <td>
-                            <a asp-controller="Purchases" asp-action="Details" asp-route-id="@item.purchaseId">Details</a>
+                            <a asp-controller="Purchases" asp-action="Details" asp-route-id="@item.purchaseId" class="btn text-black-50" style="background-color:cadetblue">Details</a>
                         </td>
                     </tr>
                 }

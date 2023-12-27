@@ -104,7 +104,7 @@ namespace Point_Of_Sales.Controllers
 
             if (employee == null)
             {
-                return Ok(new { Code = 1, Message = "Khong tim thay thang nhan vien nay" });
+                return Ok(new { Code = 1, Message = "The employee could not be found." });
             }
 
             var purchase = new Purchase()
@@ -132,7 +132,7 @@ namespace Point_Of_Sales.Controllers
                     Quantity = detail.Quantity,
                 };
                 // head
-                product.Quantity = product.Quantity - detail.Quantity;
+                //product.Quantity = product.Quantity - detail.Quantity;
 
                 // inventory
                 // var inventory = _context.Inventories.FirstOrDefault(p => p.ProductId == detail.Id);

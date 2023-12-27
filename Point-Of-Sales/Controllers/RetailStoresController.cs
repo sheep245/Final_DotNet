@@ -184,7 +184,6 @@ namespace Point_Of_Sales.Controllers
 
         // POST: RetailStores/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.RetailStores == null)

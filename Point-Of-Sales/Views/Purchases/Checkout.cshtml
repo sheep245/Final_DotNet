@@ -1,16 +1,20 @@
 ﻿@model Point_Of_Sales.Entities.Purchase
 
+@{
+    ViewData["Title"] = "Checkout";
+}
+
 <div class="container mt-4">
     <div class="row justify-content-lg-around">
         <div class="col-lg-5">
-            <h5>Customer name: @Model.Customer.Name</h5>
-            <h5>Phone: @Model.Customer.Phone</h5>
-            <h5>Address: @Model.Customer.Address</h5>
+            <h6>Customer name: @Model.Customer.Name</h6>
+            <h6>Phone: @Model.Customer.Phone</h6>
+            <h6>Address: @Model.Customer.Address</h6>
         </div>
         <div class="col-lg-5 ">
-            <h5>Invoice ID: @Model.purchaseId </h5>
-            <h5>Invoice creation day: @Model.Date_Of_Purchase</h5>
-            <h5>Staff: @Model.Employee.Id</h5>
+            <h6>Invoice ID: @Model.purchaseId </h6>
+            <h6>Invoice creation day: @Model.Date_Of_Purchase</h6>
+            <h6>Staff: @Model.Employee.Id</h6>
         </div>
     </div>
     <div class="row mt-3">
@@ -31,8 +35,8 @@
                         <td></td>
                         <td>@p.Product.Product_Name</td>
                         <td>@p.Quantity</td>
-                        <td>@p.Product.Retail_Price</td>
-                        <td>@p.Subtotal</td>
+                        <td>$@p.Product.Retail_Price</td>
+                        <td>$@p.Subtotal</td>
                     </tr>
                 }
             </tbody>
@@ -42,16 +46,16 @@
     <div class="row">
         <div class="col-lg-8"></div>
         <div class="col-lg-4">
-            <h4 style="color:darkred">Total amount: @Model.Total_Amount</h4>
+            <h5 style="color:darkred">Total amount: $@Model.Total_Amount</h5>
             <form asp-action="Checkout" method="POST">
                 <input asp-for="Id" type="hidden" />
                 <input id="total" value="@Model.Total_Amount" type="hidden" />
-                <div class="form-group">
+                <h6 class="form-group">
                     <label for="received">Receive Money</label>
                     <input id="received" name="receivedMoney" type="number" class="form-control" />
-                </div>
-                <p class="my-2" id="paidback">Paid back: 0</p>
-                <button type="submit" class="btn btn-primary">Complete</button>
+                </h6>
+                <h6 class="my-2" id="paidback">Paid back: $0</h6>
+                <button type="submit" class="btn text-white" style="background-color: #e9c46a">Complete</button>
             </form>
         </div>
     </div>
@@ -65,9 +69,9 @@
             const value = parseInt(this.value)
 
             if (value > total) {
-                document.querySelector("#paidback").textContent = `Paid back: ${(value - total)}`
+                document.querySelector("#paidback").textContent = `Paid back: $${(value - total)}`
             } else {
-                document.querySelector("#paidback").textContent = `Paid back: 0`
+                document.querySelector("#paidback").textContent = `Paid back: $0`
             }
         })
     </script>

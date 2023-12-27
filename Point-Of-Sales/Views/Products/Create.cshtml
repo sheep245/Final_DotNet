@@ -1,70 +1,74 @@
 ﻿@model Point_Of_Sales.Entities.Product
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Product";
 }
 
 <div class="container">
-    <a asp-action="Index" class="btn btn-danger mb-3">Back to List</a>
+    <a asp-action="Index" class="btn" style="color: #69a297"><i><u>Back to List</u></i></a>
     <form asp-action="Create" method="post" enctype="multipart/form-data">
         <input hidden type="file" name="image" id="image" />
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-lg-5">
                 <label for="image">
                     <img src="~/images/iphone.png" id="preview-image" style="width:100%;height:100%; object-fit:contain" />
                 </label>
             </div>
             <div class="col-lg-5">
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <div class="form-group">
                         <label asp-for="Barcode" class="control-label"></label>
                         <input asp-for="Barcode" class="form-control" />
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <div class="form-group">
                         <label asp-for="Product_Name" class="control-label">Product Name</label>
                         <input asp-for="Product_Name" class="form-control" />
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label asp-for="Import_Price" class="control-label">Import Price</label>
-                        <input asp-for="Import_Price" class="form-control" />
+                <div class="row ml-1">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Import_Price" class="control-label">Import Price</label>
+                            <input asp-for="Import_Price" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 ml-4">
+                        <div class="form-group">
+                            <label asp-for="Retail_Price" class="control-label">Retail Price</label>
+                            <input asp-for="Retail_Price" class="form-control" />
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label asp-for="Retail_Price" class="control-label">Retail Price</label>
-                        <input asp-for="Retail_Price" class="form-control" />
+                <div class="row ml-1">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Quantity" class="control-label">Quantity</label>
+                            <input asp-for="Quantity" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 ml-4">
+                        <div class="form-group">
+                            <label for="store" class="control-label">Retail Stores</label>
+                            <select name="storeId" id="store" class="form-control">
+                                @foreach (var s in ViewBag.Stores)
+                                {
+                                    <option value="@s.Id">@s.Name</option>
+                                }
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label asp-for="Quantity" class="control-label">Quantity</label>
-                        <input asp-for="Quantity" class="form-control" />
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="store" class="control-label">Retail Stores</label>
-                        <select name="storeId" id="store" class="form-control">
-                            @foreach (var s in ViewBag.Stores)
-                            {
-                                <option value="@s.Id">@s.Name</option>
-                            }
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <div class="form-group">
                         <label asp-for="Category" class="control-label">Category</label>
                         <input asp-for="Category" class="form-control" />
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="col-md-3 d-flex">
-                        <button type="submit" value="Create" class="btn btn-primary">Save</button>
+                <div class="col-md-9">
+                    <div class ="mt-4">
+                        <button type="submit" value="Create" class="btn text-white w-100" style="background-color:#55828b">Save</button>
                     </div>
                 </div>
             </div>

@@ -1,57 +1,57 @@
 ﻿@model Point_Of_Sales.Entities.Purchase
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Purchases Details";
 }
 
-<div class="container mt-4">
-    <div class="row justify-content-lg-start">
-        <a asp-action="Index" class="mb-4 btn btn-sm text-dark" style="width:25px">Back to List</a>
-    </div>
-    <div class="row justify-content-lg-around">
-        <div class="col-lg-5">
-            <h5>Customer name: @Model.Customer.Name</h5>
-            <h5>Phone: @Model.Customer.Phone</h5>
-            <h5>Address: @Model.Customer.Address</h5>
+<div class="container mt-1">
+    <a asp-action="Index" class="btn" style="color: #69a297"><i><u>Back to List</u></i></a>
+    <div class="card row flex-row justify-content-center mt-3" style="width: 1100px">
+        <div class="row justify-content-lg-around mt-2">
+            <div class="col-lg-5">
+                <h6>Customer name: @Model.Customer.Name</h6>
+                <h6>Phone: @Model.Customer.Phone</h6>
+                <h6>Address: @Model.Customer.Address</h6>
+            </div>
+            <div class="col-lg-5 ">
+                <h6>Invoice ID: @Model.purchaseId </h6>
+                <h6>Invoice creation day: @Model.Date_Of_Purchase</h6>
+                <h6>Staff: @Model.Employee.Fullname (@Model.Employee.Id)</h6>
+            </div>
         </div>
-        <div class="col-lg-5 ">
-            <h5>Invoice ID: @Model.purchaseId </h5>
-            <h5>Invoice creation day: @Model.Date_Of_Purchase</h5>
-            <h5>Staff: @Model.Employee.Id</h5>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <table class="table text-center">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Product name</th>
-                    <th>Quantity</th>
-                    <th>Retail price</th>
-                    <th>Subtotal</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var p in Model.PurchaseDetails)
-                {
-                    <tr>
-                        <td></td>
-                        <td>@p.Product.Product_Name</td>
-                        <td>@p.Quantity</td>
-                        <td>@p.Product.Retail_Price</td>
-                        <td>@p.Subtotal</td>
+        <div class="row mt-3">
+            <table class="table text-center" style="height: 70%">
+                <thead>
+                    <tr text-cent>
+                        <th>No.</th>
+                        <th>Product name</th>
+                        <th>Quantity</th>
+                        <th>Retail price</th>
+                        <th>Subtotal</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model.PurchaseDetails)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@p.Product.Product_Name</td>
+                            <td>@p.Quantity</td>
+                            <td>$@p.Product.Retail_Price</td>
+                            <td>$@p.Subtotal</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="row">
         <div class="col-lg-8"></div>
         <div class="col-lg-4">
-            <h4 style="color:darkred">Total amount: @Model.Total_Amount</h4>
-            <h4 style="color:darkred">Received Money: @Model.Received_Money</h4>
-            <h4 style="color:darkred">Paid Back: @Model.Paid_Back</h4>
+            <h5 style="color:#ad2831">Total amount: $@Model.Total_Amount</h5>
+            <h6 style="color:#780000">Received Money: $@Model.Received_Money</h6>
+            <h6 style="color:#780000">Paid Back: $@Model.Paid_Back</h6>
         </div>
     </div>
 </div>
