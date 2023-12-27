@@ -16,15 +16,30 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="StoreId" class="control-label">Store</label>
-                        <select name="RetailStoreId" id="StoreId" class="form-control">
-                            @foreach (var s in ViewBag.Stores)
-                            {
-                                if (ViewBag.Retail != null && s.Id == ViewBag.Retail.Id)
+                        @if (IsAdmin)
+                        {
+                            <select name="RetailStoreId" id="StoreId" class="form-control">
+                                @foreach (var s in ViewBag.Stores)
                                 {
-                                    <option value="@ViewBag.Retail.Id" selected>@s.Name</option>
+                                    if (ViewBag.Retail != null && s.Id == ViewBag.Retail.Id)
+                                    {
+                                        <option value="@ViewBag.Retail.Id" selected>@s.Name</option>
+                                    }
                                 }
-                            }
-                        </select>
+                            </select>
+                        }
+                        else
+                        {
+                            <select name="RetailStoreId" id="StoreId" class="form-control">
+                                @foreach (var s in ViewBag.Stores)
+                                {
+                                    if (ViewBag.Retail != null)
+                                    {
+                                        <option value="@ViewBag.Retail.Id" selected>@s.Name</option>
+                                    }
+                                }
+                            </select>
+                        }
                     </div>
                 </div>
                 <div class="col-md-12">
