@@ -56,7 +56,7 @@ namespace Point_Of_Sales.Controllers
             
             if (q != 0)
             {
-                orders = _context.PurchaseHistories.Where(or => or.Employee.RetailStoreId == q && or.Received_Money > 0).ToList();
+                orders = _context.PurchaseHistories.Where(or => or.Employee.RetailStoreId == q && or.Received_Money >= or.Total_Amount).ToList();
             }
             else
             {
@@ -64,12 +64,12 @@ namespace Point_Of_Sales.Controllers
                 
                 if(retailId != null)
                 {
-                    orders = _context.PurchaseHistories.Where(or => or.Employee.RetailStoreId == retailId && or.Received_Money > 0).ToList();
+                    orders = _context.PurchaseHistories.Where(or => or.Employee.RetailStoreId == retailId && or.Received_Money >= or.Total_Amount).ToList();
                 }
 
                 if (User.IsInRole("Head"))
                 {
-                    orders = _context.PurchaseHistories.ToList();
+                    orders = _context.PurchaseHistories.Where(or => or.Received_Money >= or.Total_Amount).ToList();
 
                 }
             }

@@ -14,9 +14,9 @@ namespace Point_Of_Sales.Migrations
                 name: "FK_PurchaseDetails_PurchaseHistories_PurchaseHistoryId",
                 table: "PurchaseDetails");
 
-            migrationBuilder.DropIndex(
+            /*migrationBuilder.DropIndex(
                 name: "IX_Inventories_RetailStoreId",
-                table: "Inventories");
+                table: "Inventories");*/
 
             migrationBuilder.DropColumn(
                 name: "pdetail_ID",
@@ -51,11 +51,11 @@ namespace Point_Of_Sales.Migrations
                 nullable: false,
                 defaultValue: 0m);
 
-            migrationBuilder.CreateIndex(
+            /*migrationBuilder.CreateIndex(
                 name: "IX_Inventories_RetailStoreId",
                 table: "Inventories",
                 column: "RetailStoreId",
-                unique: true);
+                unique: true);*/
 
             migrationBuilder.AddForeignKey(
                 name: "FK_PurchaseDetails_PurchaseHistories_PurchaseId",
@@ -73,9 +73,9 @@ namespace Point_Of_Sales.Migrations
                 name: "FK_PurchaseDetails_PurchaseHistories_PurchaseId",
                 table: "PurchaseDetails");
 
-            migrationBuilder.DropIndex(
+            /*migrationBuilder.DropIndex(
                 name: "IX_Inventories_RetailStoreId",
-                table: "Inventories");
+                table: "Inventories");*/
 
             migrationBuilder.DropColumn(
                 name: "InventoryId",
@@ -107,10 +107,10 @@ namespace Point_Of_Sales.Migrations
                 nullable: false,
                 defaultValue: "");
 
-            migrationBuilder.CreateIndex(
+            /*migrationBuilder.CreateIndex(
                 name: "IX_Inventories_RetailStoreId",
                 table: "Inventories",
-                column: "RetailStoreId");
+                column: "RetailStoreId");*/
 
             migrationBuilder.AddForeignKey(
                 name: "FK_PurchaseDetails_PurchaseHistories_PurchaseHistoryId",

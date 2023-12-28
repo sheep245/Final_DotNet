@@ -126,12 +126,12 @@ namespace Point_Of_Sales.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Accounts", x => x.Id);
-                    table.ForeignKey(
+                    /*table.ForeignKey(
                         name: "FK_Accounts_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Cascade);*/
                 });
 
             migrationBuilder.CreateTable(
@@ -209,10 +209,10 @@ namespace Point_Of_Sales.Migrations
                 table: "Inventories",
                 column: "ProductId");
 
-            migrationBuilder.CreateIndex(
+            /*migrationBuilder.CreateIndex(
                 name: "IX_Inventories_RetailStoreId",
                 table: "Inventories",
-                column: "RetailStoreId");
+                column: "RetailStoreId");*/
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_Product_Name_Barcode",

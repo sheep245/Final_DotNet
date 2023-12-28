@@ -160,7 +160,7 @@ namespace Point_Of_Sales.Controllers
                     string subject = "";
                     var link = $"{Request.Scheme}://{Request.Host}" + Helpers.HelperConfirm.Generatelink(username);
 
-                    string content = $"Welcome to my app. Please click <a href=\"{link}\"> here </a> to active your account.";
+                    string content = $"Welcome to my <b>Point Of Sales</b> website.<hr>Please click <a href=\"{link}\"> here</a> to active your account.";
 
                     var mailer = new Mailer(_configuration);
 

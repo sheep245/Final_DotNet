@@ -55,7 +55,7 @@
                     <input id="received" name="receivedMoney" type="number" class="form-control" />
                 </h6>
                 <h6 class="my-2" id="paidback">Paid back: $0</h6>
-                <button type="submit" class="btn text-white" style="background-color: #e9c46a">Complete</button>
+                <button onclick="checkOut(this)" type="submit" class="btn text-white" style="background-color: #e9c46a">Complete</button>
             </form>
         </div>
     </div>
@@ -74,5 +74,17 @@
                 document.querySelector("#paidback").textContent = `Paid back: $0`
             }
         })
+
+        /*function checkOut(button) {
+            const total = parseInt(document.querySelector("#total").value)
+            const received = parseInt(document.querySelector("#received").value)
+
+            if (received < total) {
+                alert("Received money is not enough.")
+                return;
+            }
+        }*/
+
+        
     </script>
 }
